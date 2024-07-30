@@ -14,7 +14,7 @@ License:        GPL3
 URL:            https://github.com/zed-industries/zed
 Source0:        %{name}-%{version}.tar.gz
 
-BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  alsa-lib-devel
