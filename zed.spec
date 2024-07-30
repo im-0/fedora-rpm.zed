@@ -4,9 +4,10 @@
 %global crate zed
 %global app_id dev.zed.Zed
 
+
 Name:           zed
 Version:        0.145.1
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3
@@ -16,8 +17,6 @@ Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  gcc
 BuildRequires:  g++
-BuildRequires:  clang
-BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
@@ -31,6 +30,7 @@ BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
+
 
 %description
 Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter. It's also open source.
@@ -49,12 +49,30 @@ echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
+%cargo_prep -N
+
+## can not build it offline yet
+sed -i 's/offline = true/offline = false/g' .cargo/config.toml
+
+
 %build
-%__cargo build --release
+export ZED_UPDATE_EXPLANATION="Please use the distribution package manager to update zed."
+
+# Build CLI
+pushd crates/cli/
+%{cargo_build}
+popd
+# Build Editor
+pushd crates/zed/
+%{cargo_build}
+popd
+
 script/generate-licenses
 
 %install
-install -Dm755 target/release/zed %{buildroot}%{_bindir}/zed
+install -Dm755 target/release/zed %{buildroot}%{_libexecdir}/zed-editor
+install -Dm755 target/release/cli %{buildroot}%{_bindir}/zed
+#install -Dm755 target/release/zed %{buildroot}%{_bindir}/zed
 
 install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
 install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
@@ -65,6 +83,7 @@ install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo
 %files
 %license assets/licenses.md
 %{_bindir}/zed
+%{_libexecdir}/zed-editor
 %{_datadir}/applications/%app_id.desktop
 %{_datadir}/pixmaps/%app_id.png
 %{_metainfodir}/%app_id.metainfo.xml
