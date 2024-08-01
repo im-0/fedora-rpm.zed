@@ -7,7 +7,7 @@
 
 Name:           zed
 Version:        0.146.3
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3
@@ -56,7 +56,9 @@ sed -i 's/offline = true/offline = false/g' .cargo/config.toml
 
 
 %build
-export ZED_UPDATE_EXPLANATION="Please use the distribution package manager to update zed."
+export ZED_UPDATE_EXPLANATION="Please use the package manager to update zed."
+
+script/generate-licenses
 
 # Build CLI
 pushd crates/cli/
@@ -66,8 +68,6 @@ popd
 pushd crates/zed/
 %{cargo_build}
 popd
-
-script/generate-licenses
 
 %install
 install -Dm755 target/release/zed %{buildroot}%{_libexecdir}/zed-editor
