@@ -7,10 +7,10 @@
 
 Name:           zed
 Version:        0.146.3
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        a high-performance multiplayer code editor
 
-License:        GPL3
+License:        GPL3 AGPL
 URL:            https://github.com/zed-industries/zed
 Source0:        %{name}-%{version}.tar.gz
 
@@ -31,6 +31,8 @@ BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
 
+### for the desktop file
+BuildRequires:  desktop-file-utils
 
 %description
 Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter. It's also open source.
@@ -43,9 +45,9 @@ export APP_ID="%app_id"
 export APP_ICON="%app_id"
 export APP_NAME="Zed Editor"
 export APP_CLI="zed"
+export APP_ARGS="%U"
 export ZED_RELEASE_CHANNEL=stable
 
-echo "StartupWMClass=$APP_ID" >> crates/zed/resources/zed.desktop.in
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
@@ -64,6 +66,7 @@ script/generate-licenses
 pushd crates/cli/
 %{cargo_build}
 popd
+
 # Build Editor
 pushd crates/zed/
 %{cargo_build}
@@ -74,18 +77,22 @@ install -Dm755 target/release/zed %{buildroot}%{_libexecdir}/zed-editor
 install -Dm755 target/release/cli %{buildroot}%{_bindir}/zed
 #install -Dm755 target/release/zed %{buildroot}%{_bindir}/zed
 
-install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
-install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
+desktop-file-install                                    \
+--dir=%{buildroot}%{_datadir}/applications              \
+%app_id.desktop
 
+#install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
+#install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
+install -Dm644 assets/icons/logo_96.svg %{buildroot}%{_datadir}/pixmaps/%app_id.svg
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 
 %files
-%license assets/licenses.md
+%license LICENSE-* assets/licenses.md
 %{_bindir}/zed
 %{_libexecdir}/zed-editor
 %{_datadir}/applications/%app_id.desktop
-%{_datadir}/pixmaps/%app_id.png
+%{_datadir}/pixmaps/%app_id.svg
 %{_metainfodir}/%app_id.metainfo.xml
 
 
