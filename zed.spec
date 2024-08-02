@@ -6,8 +6,8 @@
 
 
 Name:           zed
-Version:        0.146.3
-Release:        0.3%{?dist}
+Version:        0.146.4
+Release:        0.1%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3 AGPL
