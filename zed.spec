@@ -6,13 +6,21 @@
 
 
 Name:           zed
-Version:        0.153.7
+Version:        0.154.3
 Release:        0.1%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3 AGPL
 URL:            https://github.com/zed-industries/zed
-Source0:        %{name}-%{version}.tar.gz
+Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name}-%{version}.tar.gz
+
+# Contains zed-$VERSION/vendor/*.
+#     $ cargo vendor
+#     $ mkdir zed-X.Y.Z
+#     $ mv vendor zed-X.Y.Z/
+#     $ tar vcJf zed-X.Y.Z.cargo-vendor.tar.xz zed-X.Y.Z
+Source1:    %{name}-%{version}.cargo-vendor.tar.xz
+Source2:    config.toml
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
@@ -30,6 +38,8 @@ BuildRequires:  perl-File-Copy
 BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
+BuildRequires:  clang
+BuildRequires:  cmake
 
 ### for the desktop file
 BuildRequires:  desktop-file-utils
@@ -38,7 +48,10 @@ BuildRequires:  desktop-file-utils
 Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter. It's also open source.
 
 %prep
-%autosetup -n %{crate}-%{version} -p1
+%setup -q -D -T -b0 -n %{crate}-%{version}
+%setup -q -D -T -b1 -n %{crate}-%{version}
+
+cat %{SOURCE2} >>.cargo/config.toml
 
 export DO_STARTUP_NOTIFY="true"
 export APP_ID="%app_id"
@@ -51,25 +64,27 @@ export ZED_RELEASE_CHANNEL=stable
 envsubst < "crates/zed/resources/zed.desktop.in" > $APP_ID.desktop
 envsubst < "crates/zed/resources/flatpak/zed.metainfo.xml.in" > $APP_ID.metainfo.xml
 
-%cargo_prep -N
-
-## can not build it offline yet
-sed -i 's/offline = true/offline = false/g' .cargo/config.toml
-
 
 %build
 export ZED_UPDATE_EXPLANATION="Please use the package manager to update zed."
 
-script/generate-licenses
+# Check https://pagure.io/fedora-rust/rust2rpm/blob/main/f/data/macros.rust for
+# rust-specific variables.
+export RUSTC_BOOTSTRAP=1
+export RUSTFLAGS='%{build_rustflags} --cfg gles'
+
+# TODO: Generate licenses
+#script/generate-licenses
+touch assets/licenses.md
 
 # Build CLI
 pushd crates/cli/
-%{cargo_build}
+cargo build %{__cargo_common_opts} --release --frozen
 popd
 
 # Build Editor
 pushd crates/zed/
-%{cargo_build}
+cargo build %{__cargo_common_opts} --release --frozen
 popd
 
 %install

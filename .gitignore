@@ -1,12 +1,2 @@
-/zed-0.143.7.tar.gz
-/zed-0.145.1.tar.gz
-/zed-0.146.3.tar.gz
-/zed-0.146.4.tar.gz
-/zed-0.146.5.tar.gz
-/zed-0.147.2.tar.gz
-/zed-0.150.4.tar.gz
-/zed-0.151.2.tar.gz
-/zed-0.152.3.tar.gz
-/zed-0.152.4.tar.gz
-/zed-0.153.6.tar.gz
-/zed-0.153.7.tar.gz
+/*.tar.gz
+/*.tar.xz
