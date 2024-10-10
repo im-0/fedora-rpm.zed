@@ -6,8 +6,8 @@
 
 
 Name:           zed
-Version:        0.155.2
-Release:        0.1%{?dist}
+Version:        0.156.1
+Release:        1%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3 AGPL
@@ -71,7 +71,6 @@ export ZED_UPDATE_EXPLANATION="Please use the package manager to update zed."
 # Check https://pagure.io/fedora-rust/rust2rpm/blob/main/f/data/macros.rust for
 # rust-specific variables.
 export RUSTC_BOOTSTRAP=1
-export RUSTFLAGS='%{build_rustflags} --cfg gles'
 
 # TODO: Generate licenses
 #script/generate-licenses
