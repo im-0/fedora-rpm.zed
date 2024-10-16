@@ -66,11 +66,6 @@ git = "https://github.com/zed-industries/tree-sitter-markdown"
 rev = "4cfa6aad6b75052a5077c80fd934757d9267d81b"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/tree-sitter-proto?rev=0848bd30a64be48772e15fbb9d5ba8c0cc5772ad"]
-git = "https://github.com/zed-industries/tree-sitter-proto"
-rev = "0848bd30a64be48772e15fbb9d5ba8c0cc5772ad"
-replace-with = "vendored-sources"
-
 [source."git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
