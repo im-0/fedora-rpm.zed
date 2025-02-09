@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.166.1
+Version:        0.172.10
 Release:        1%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -21,6 +21,9 @@ Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name
 #     $ tar vcJf zed-X.Y.Z.cargo-vendor.tar.xz zed-X.Y.Z
 Source1:    %{name}-%{version}.cargo-vendor.tar.xz
 Source2:    config.toml
+
+Source401:  https://github.com/zed-industries/webrtc/releases/download/m114_release_patched/webrtc-linux-x64-release.zip
+Source402:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-dac8015-6/webrtc-linux-arm64-release.zip
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
@@ -44,6 +47,9 @@ BuildRequires:  cmake
 ### for the desktop file
 BuildRequires:  desktop-file-utils
 
+ExclusiveArch:  x86_64 aarch64
+
+
 %description
 Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter. It's also open source.
 
@@ -52,6 +58,13 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 %setup -q -D -T -b1 -n %{crate}-%{version}
 
 cat %{SOURCE2} >>.cargo/config.toml
+
+%ifarch x86_64
+%setup -q -D -T -b401 -n %{crate}-%{version}
+%endif
+%ifarch aarch64
+%setup -q -D -T -b402 -n %{crate}-%{version}
+%endif
 
 export DO_STARTUP_NOTIFY="true"
 export APP_ID="%app_id"
@@ -75,6 +88,13 @@ export RUSTC_BOOTSTRAP=1
 # TODO: Generate licenses
 #script/generate-licenses
 touch assets/licenses.md
+
+%ifarch x86_64
+export LK_CUSTOM_WEBRTC="$( pwd )/../linux-x64-release"
+%endif
+%ifarch aarch64
+export LK_CUSTOM_WEBRTC="$( pwd )/../linux-arm64-release"
+%endif
 
 # Build CLI
 pushd crates/cli/
