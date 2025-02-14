@@ -26,9 +26,9 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/kvark/blade?rev=091a8401033847bb9b6ace3fcf70448d069621c5"]
+[source."git+https://github.com/kvark/blade?rev=b16f5c7bd873c7126f48c82c39e7ae64602ae74f"]
 git = "https://github.com/kvark/blade"
-rev = "091a8401033847bb9b6ace3fcf70448d069621c5"
+rev = "b16f5c7bd873c7126f48c82c39e7ae64602ae74f"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0"]
@@ -61,6 +61,11 @@ git = "https://github.com/zed-industries/async-stripe"
 rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/zed-industries/async-tls?rev=1e759a4b5e370f87dc15e40756ac4f8815b61d9d"]
+git = "https://github.com/zed-industries/async-tls"
+rev = "1e759a4b5e370f87dc15e40756ac4f8815b61d9d"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"]
 git = "https://github.com/zed-industries/cpal"
 rev = "fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
@@ -71,14 +76,14 @@ git = "https://github.com/zed-industries/font-kit"
 rev = "40391b7"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=060964da10574cd9bf06463a53bf6e0769c5c45e"]
+[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=811ceae29fabee455f110c56cd66b3f49a7e5003"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
-rev = "060964da10574cd9bf06463a53bf6e0769c5c45e"
+rev = "811ceae29fabee455f110c56cd66b3f49a7e5003"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=72357d6f6d212bdffba3b5ef4b31d8ca856058e7"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=1fff0dd12e2071c5667327394cfec163d2a466ab"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "72357d6f6d212bdffba3b5ef4b31d8ca856058e7"
+rev = "1fff0dd12e2071c5667327394cfec163d2a466ab"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/oo7?branch=avoid-crypto-panic"]
@@ -89,6 +94,11 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/zed-industries/reqwest.git?rev=fd110f6998da16bbca97b6dddda9be7827c50e29"]
 git = "https://github.com/zed-industries/reqwest.git"
 rev = "fd110f6998da16bbca97b6dddda9be7827c50e29"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
+git = "https://github.com/zed-industries/tree-sitter-git-commit"
+rev = "88309716a69dd13ab83443721ba6e0b491d37ee9"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/tree-sitter-go-work?rev=acb0617bf7f4fda02c6217676cc64acb89536dc7"]
