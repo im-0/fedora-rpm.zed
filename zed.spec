@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.173.11
+Version:        0.174.5
 Release:        1%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -22,6 +22,7 @@ Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name
 Source1:    %{name}-%{version}.cargo-vendor.tar.xz
 Source2:    config.toml
 
+# Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
 Source401:  https://github.com/zed-industries/webrtc/releases/download/m114_release_patched/webrtc-linux-x64-release.zip
 Source402:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-dac8015-6/webrtc-linux-arm64-release.zip
 
