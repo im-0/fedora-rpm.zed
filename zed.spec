@@ -6,8 +6,8 @@
 
 
 Name:           zed
-Version:        0.174.6
-Release:        1%{?dist}
+Version:        0.176.1
+Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3 AGPL
@@ -25,6 +25,9 @@ Source2:    config.toml
 # Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
 Source401:  https://github.com/zed-industries/webrtc/releases/download/m114_release_patched/webrtc-linux-x64-release.zip
 Source402:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-dac8015-6/webrtc-linux-arm64-release.zip
+
+Patch0:     0001-Support-enabling-features-by-environment-variable.patch
+Patch1:     0002-Enable-default-features-when-env-var-is-not-present.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
@@ -57,6 +60,9 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 %prep
 %setup -q -D -T -b0 -n %{crate}-%{version}
 %setup -q -D -T -b1 -n %{crate}-%{version}
+
+%patch -P0 -p1
+%patch -P1 -p1
 
 cat %{SOURCE2} >>.cargo/config.toml
 

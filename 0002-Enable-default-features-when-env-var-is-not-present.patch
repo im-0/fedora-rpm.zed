@@ -1,0 +1,40 @@
+From ac5955e4342b89ef347c9038cd1e8271620ea31e Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Tue, 4 Mar 2025 07:49:26 +0100
+Subject: [PATCH 2/2] Enable default features when env var is not present
+
+Currently enables only `git-ui`.
+
+Also, adds ability to disable default features by setting to empty
+string:
+
+	ZED_ENABLE_EXPERIMENTAL_FEATURES= zed
+---
+ crates/zed/src/main.rs | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
+index 49692d52b1b4..45b3b8cd3591 100644
+--- a/crates/zed/src/main.rs
++++ b/crates/zed/src/main.rs
+@@ -568,6 +568,17 @@ fn main() {
+         initialize_workspace(app_state.clone(), prompt_builder, cx);
+ 
+         let mut feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
++            .map_or_else(
++                |e| {
++                    if e == VarError::NotPresent {
++                        // List of features enabled if variable is not present.
++                        Ok("git-ui".to_string())
++                    } else {
++                        Err(e)
++                    }
++                },
++                |s| Ok(s),
++            )
+             .and_then(|s| {
+                 if s.is_empty() {
+                     Err(VarError::NotPresent)
+-- 
+2.48.1
+

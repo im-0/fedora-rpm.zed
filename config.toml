@@ -1,3 +1,4 @@
+
 [source.crates-io]
 replace-with = "vendored-sources"
 
@@ -14,11 +15,6 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/XDeme1/xim-rs?rev=d50d461764c2213655cd9cf65a0ea94c70d3c4fd"]
 git = "https://github.com/XDeme1/xim-rs"
 rev = "d50d461764c2213655cd9cf65a0ea94c70d3c4fd"
-replace-with = "vendored-sources"
-
-[source."git+https://github.com/alacritty/alacritty.git?rev=5e78d20c709cb1ab8d44ca7a8702cc26d779227c"]
-git = "https://github.com/alacritty/alacritty.git"
-rev = "5e78d20c709cb1ab8d44ca7a8702cc26d779227c"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
@@ -49,6 +45,11 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 git = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
 rev = "9a23c1a96c0513d8fc6520972beedd419a973539"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/zed-industries/alacritty.git?rev=03c2907b44b4189aac5fdeaea331f5aab5c7072e"]
+git = "https://github.com/zed-industries/alacritty.git"
+rev = "03c2907b44b4189aac5fdeaea331f5aab5c7072e"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
@@ -84,11 +85,6 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/zed-industries/lsp-types?rev=1fff0dd12e2071c5667327394cfec163d2a466ab"]
 git = "https://github.com/zed-industries/lsp-types"
 rev = "1fff0dd12e2071c5667327394cfec163d2a466ab"
-replace-with = "vendored-sources"
-
-[source."git+https://github.com/zed-industries/oo7?branch=avoid-crypto-panic"]
-git = "https://github.com/zed-industries/oo7"
-branch = "avoid-crypto-panic"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/reqwest.git?rev=fd110f6998da16bbca97b6dddda9be7827c50e29"]
