@@ -1,4 +1,4 @@
-From f02818e1be3f1f0152730fbe3be763bc4ef6da5b Mon Sep 17 00:00:00 2001
+From a82f4d2ccc380ac895a6f5dc5b8913716ceab33f Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH 1/2] Support enabling features by environment variable
@@ -16,8 +16,8 @@ allowed to access.
 This patch also removes the ability to disable features at runtime.
 ---
  crates/feature_flags/src/feature_flags.rs |  4 +++-
- crates/zed/src/main.rs                    | 25 ++++++++++++++++++++++-
- 2 files changed, 27 insertions(+), 2 deletions(-)
+ crates/zed/src/main.rs                    | 23 ++++++++++++++++++++++-
+ 2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
 index a5dbef424f2b..619479ef7b0c 100644
@@ -35,7 +35,7 @@ index a5dbef424f2b..619479ef7b0c 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index b25052f8399a..49692d52b1b4 100644
+index b25052f8399a..ebc32b46157d 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -16,6 +16,7 @@ use editor::Editor;
@@ -55,7 +55,7 @@ index b25052f8399a..49692d52b1b4 100644
      fs::OpenOptions,
      io::{self, IsTerminal, Write},
      path::{Path, PathBuf},
-@@ -566,6 +567,28 @@ fn main() {
+@@ -566,6 +567,26 @@ fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
@@ -77,8 +77,6 @@ index b25052f8399a..49692d52b1b4 100644
 +                },
 +                |s| s.split(',').map(|s| s.to_string()).collect(),
 +            );
-+        feature_flags.sort();
-+        feature_flags.dedup();
 +        cx.update_flags(false, feature_flags);
 +
          cx.activate(true);
