@@ -1,7 +1,7 @@
-From a82f4d2ccc380ac895a6f5dc5b8913716ceab33f Mon Sep 17 00:00:00 2001
+From 7392c5426b1234888651471fe4a1f5c1e4b07242 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
-Subject: [PATCH 1/2] Support enabling features by environment variable
+Subject: [PATCH] Support enabling features by environment variable
 
 This adds new environment variable `ZED_ENABLE_EXPERIMENTAL_FEATURES`
 that accepts comma-separated list of features:
@@ -20,10 +20,10 @@ This patch also removes the ability to disable features at runtime.
  2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index a5dbef424f2b..619479ef7b0c 100644
+index 4e94ae302d02..c8c2f0960cc1 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -196,7 +196,9 @@ impl FeatureFlagAppExt for App {
+@@ -191,7 +191,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -35,31 +35,31 @@ index a5dbef424f2b..619479ef7b0c 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index b25052f8399a..ebc32b46157d 100644
+index 62dfd41a08ac..a08170f2eef0 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -16,6 +16,7 @@ use editor::Editor;
- use env_logger::Builder;
+@@ -15,6 +15,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+ use editor::Editor;
  use extension::ExtensionHostProxy;
  use extension_host::ExtensionStore;
 +use feature_flags::FeatureFlagAppExt;
  use fs::{Fs, RealFs};
  use futures::{future, StreamExt};
  use git::GitHostingProviderRegistry;
-@@ -38,7 +39,7 @@ use session::{AppSession, Session};
+@@ -36,7 +37,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+ use session::{AppSession, Session};
  use settings::{watch_config_file, Settings, SettingsStore};
- use simplelog::ConfigBuilder;
  use std::{
 -    env,
 +    env::{self, VarError},
-     fs::OpenOptions,
-     io::{self, IsTerminal, Write},
+     io::{self, IsTerminal},
      path::{Path, PathBuf},
-@@ -566,6 +567,26 @@ fn main() {
+     process,
+@@ -575,6 +576,26 @@ fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
-+        let mut feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
++        let feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
 +            .and_then(|s| {
 +                if s.is_empty() {
 +                    Err(VarError::NotPresent)
