@@ -46,9 +46,9 @@ git = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
 rev = "9a23c1a96c0513d8fc6520972beedd419a973539"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/alacritty.git?rev=03c2907b44b4189aac5fdeaea331f5aab5c7072e"]
+[source."git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"]
 git = "https://github.com/zed-industries/alacritty.git"
-rev = "03c2907b44b4189aac5fdeaea331f5aab5c7072e"
+branch = "add-hush-login-flag"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
