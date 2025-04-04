@@ -1,11 +1,6 @@
 [source.crates-io]
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/ConradIrwin/xkbcommon-rs?rev=fcbb4612185cc129ceeff51d22f7fb51810a03b2"]
-git = "https://github.com/ConradIrwin/xkbcommon-rs"
-rev = "fcbb4612185cc129ceeff51d22f7fb51810a03b2"
-replace-with = "vendored-sources"
-
 [source."git+https://github.com/KillTheMule/nvim-rs?branch=master"]
 git = "https://github.com/KillTheMule/nvim-rs"
 branch = "master"
@@ -29,11 +24,6 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0"]
 git = "https://github.com/microsoft/python-environment-tools.git"
 rev = "1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0"
-replace-with = "vendored-sources"
-
-[source."git+https://github.com/pop-os/cosmic-text?rev=542b20c"]
-git = "https://github.com/pop-os/cosmic-text"
-rev = "542b20c"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
