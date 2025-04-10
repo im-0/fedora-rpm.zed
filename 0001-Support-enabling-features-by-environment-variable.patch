@@ -1,4 +1,4 @@
-From 7392c5426b1234888651471fe4a1f5c1e4b07242 Mon Sep 17 00:00:00 2001
+From c351c969c7f537305d18c37af23b983a40c77391 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -20,10 +20,10 @@ This patch also removes the ability to disable features at runtime.
  2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index 4e94ae302d02..c8c2f0960cc1 100644
+index effb3cda3100..dc0a52f19093 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -191,7 +191,9 @@ impl FeatureFlagAppExt for App {
+@@ -171,7 +171,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -35,27 +35,27 @@ index 4e94ae302d02..c8c2f0960cc1 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 62dfd41a08ac..a08170f2eef0 100644
+index 0f34b5477757..787f5d346304 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -15,6 +15,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+@@ -16,6 +16,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
  use editor::Editor;
  use extension::ExtensionHostProxy;
  use extension_host::ExtensionStore;
 +use feature_flags::FeatureFlagAppExt;
  use fs::{Fs, RealFs};
- use futures::{future, StreamExt};
+ use futures::{StreamExt, future};
  use git::GitHostingProviderRegistry;
-@@ -36,7 +37,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+@@ -37,7 +38,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
- use settings::{watch_config_file, Settings, SettingsStore};
+ use settings::{Settings, SettingsStore, watch_config_file};
  use std::{
 -    env,
 +    env::{self, VarError},
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -575,6 +576,26 @@ fn main() {
+@@ -588,6 +589,26 @@ fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
@@ -83,5 +83,5 @@ index 62dfd41a08ac..a08170f2eef0 100644
  
          cx.spawn({
 -- 
-2.48.1
+2.49.0
 
