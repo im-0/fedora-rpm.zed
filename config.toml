@@ -1,6 +1,11 @@
 [source.crates-io]
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/ConradIrwin/runtimed?rev=7130c804216b6914355d15d0b91ea91f6babd734"]
+git = "https://github.com/ConradIrwin/runtimed"
+rev = "7130c804216b6914355d15d0b91ea91f6babd734"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/KillTheMule/nvim-rs?branch=master"]
 git = "https://github.com/KillTheMule/nvim-rs"
 branch = "master"
@@ -21,9 +26,9 @@ git = "https://github.com/kvark/blade"
 rev = "b16f5c7bd873c7126f48c82c39e7ae64602ae74f"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/microsoft/python-environment-tools.git?rev=1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0"]
+[source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 git = "https://github.com/microsoft/python-environment-tools.git"
-rev = "1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0"
+rev = "845945b830297a50de0e24020b980a65e4820559"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
@@ -46,19 +51,14 @@ git = "https://github.com/zed-industries/async-stripe"
 rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/async-tls?rev=1e759a4b5e370f87dc15e40756ac4f8815b61d9d"]
-git = "https://github.com/zed-industries/async-tls"
-rev = "1e759a4b5e370f87dc15e40756ac4f8815b61d9d"
-replace-with = "vendored-sources"
-
 [source."git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"]
 git = "https://github.com/zed-industries/cpal"
 rev = "fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/dap-types?rev=bfd4af0"]
+[source."git+https://github.com/zed-industries/dap-types?rev=be69a016ba710191b9fdded28c8b042af4b617f7"]
 git = "https://github.com/zed-industries/dap-types"
-rev = "bfd4af0"
+rev = "be69a016ba710191b9fdded28c8b042af4b617f7"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
