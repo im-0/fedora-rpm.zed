@@ -1,4 +1,4 @@
-From c351c969c7f537305d18c37af23b983a40c77391 Mon Sep 17 00:00:00 2001
+From 3ce73bb1e9165f67afe14b6036a1c271b00c434c Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -20,10 +20,10 @@ This patch also removes the ability to disable features at runtime.
  2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index effb3cda3100..dc0a52f19093 100644
+index 5d7ed55e4553..c28459aa6cce 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -171,7 +171,9 @@ impl FeatureFlagAppExt for App {
+@@ -166,7 +166,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -35,10 +35,10 @@ index effb3cda3100..dc0a52f19093 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 0f34b5477757..787f5d346304 100644
+index 2faef06e293f..73a9f0530d6c 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -16,6 +16,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+@@ -14,6 +14,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
  use editor::Editor;
  use extension::ExtensionHostProxy;
  use extension_host::ExtensionStore;
@@ -46,7 +46,7 @@ index 0f34b5477757..787f5d346304 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, future};
  use git::GitHostingProviderRegistry;
-@@ -37,7 +38,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+@@ -34,7 +35,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
  use settings::{Settings, SettingsStore, watch_config_file};
  use std::{
@@ -55,7 +55,7 @@ index 0f34b5477757..787f5d346304 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -588,6 +589,26 @@ fn main() {
+@@ -616,6 +617,26 @@ fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
