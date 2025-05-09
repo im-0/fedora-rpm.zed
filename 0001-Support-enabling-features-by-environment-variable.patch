@@ -1,4 +1,4 @@
-From 3ce73bb1e9165f67afe14b6036a1c271b00c434c Mon Sep 17 00:00:00 2001
+From 2412e5a0195fa6107e912a72951658264de76d76 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -35,7 +35,7 @@ index 5d7ed55e4553..c28459aa6cce 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 2faef06e293f..73a9f0530d6c 100644
+index 098c9715f284..cc66d3500a26 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -14,6 +14,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
@@ -44,7 +44,7 @@ index 2faef06e293f..73a9f0530d6c 100644
  use extension_host::ExtensionStore;
 +use feature_flags::FeatureFlagAppExt;
  use fs::{Fs, RealFs};
- use futures::{StreamExt, future};
+ use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
 @@ -34,7 +35,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
@@ -55,7 +55,7 @@ index 2faef06e293f..73a9f0530d6c 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -616,6 +617,26 @@ fn main() {
+@@ -608,6 +609,26 @@ fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
