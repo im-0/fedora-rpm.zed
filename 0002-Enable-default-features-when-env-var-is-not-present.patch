@@ -1,0 +1,40 @@
+From e1fe6a975973e8b307ef9798a2a543a04ccdf5e1 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Tue, 4 Mar 2025 07:49:26 +0100
+Subject: [PATCH 2/2] Enable default features when env var is not present
+
+Currently enables only `debugger`.
+
+Also, adds ability to disable default features by setting to empty
+string:
+
+	ZED_ENABLE_EXPERIMENTAL_FEATURES= zed
+---
+ crates/zed/src/main.rs | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
+index cc66d3500a26..613a142e95e2 100644
+--- a/crates/zed/src/main.rs
++++ b/crates/zed/src/main.rs
+@@ -610,6 +610,17 @@ fn main() {
+         initialize_workspace(app_state.clone(), prompt_builder, cx);
+ 
+         let feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
++            .map_or_else(
++                |e| {
++                    if e == VarError::NotPresent {
++                        // List of features enabled if variable is not present.
++                        Ok("debugger".to_string())
++                    } else {
++                        Err(e)
++                    }
++                },
++                |s| Ok(s),
++            )
+             .and_then(|s| {
+                 if s.is_empty() {
+                     Err(VarError::NotPresent)
+-- 
+2.49.0
+

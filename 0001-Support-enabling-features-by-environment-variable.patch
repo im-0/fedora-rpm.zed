@@ -1,7 +1,7 @@
-From 2412e5a0195fa6107e912a72951658264de76d76 Mon Sep 17 00:00:00 2001
+From 8e8475e0f9959d279481818926c4e279db756910 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
-Subject: [PATCH] Support enabling features by environment variable
+Subject: [PATCH 1/2] Support enabling features by environment variable
 
 This adds new environment variable `ZED_ENABLE_EXPERIMENTAL_FEATURES`
 that accepts comma-separated list of features:
