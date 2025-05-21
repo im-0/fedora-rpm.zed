@@ -21,10 +21,10 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 
-[source."git+https://github.com/kvark/blade?rev=b16f5c7bd873c7126f48c82c39e7ae64602ae74f"]
+[source."git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
 git = "https://github.com/kvark/blade"
-rev = "b16f5c7bd873c7126f48c82c39e7ae64602ae74f"
-replace-with = "vendor+git+https://github.com/kvark/blade?rev=b16f5c7bd873c7126f48c82c39e7ae64602ae74f"
+rev = "416375211bb0b5826b3584dccdb6a43369e499ad"
+replace-with = "vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 git = "https://github.com/microsoft/python-environment-tools.git"
@@ -126,8 +126,8 @@ directory = "vendor/git-89f77308e29f7200"
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
 
-[source."vendor+git+https://github.com/kvark/blade?rev=b16f5c7bd873c7126f48c82c39e7ae64602ae74f"]
-directory = "vendor/git-ad504cfcfcd88200"
+[source."vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
+directory = "vendor/git-de67a384b9632400"
 
 [source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 directory = "vendor/git-c448ea69363ad400"
