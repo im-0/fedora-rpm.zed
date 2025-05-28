@@ -21,6 +21,11 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 
+[source."git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
+git = "https://github.com/jj-vcs/jj"
+rev = "e18eb8e05efaa153fad5ef46576af145bba1807f"
+replace-with = "vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"
+
 [source."git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
 git = "https://github.com/kvark/blade"
 rev = "416375211bb0b5826b3584dccdb6a43369e499ad"
@@ -56,10 +61,10 @@ git = "https://github.com/zed-industries/cpal"
 rev = "fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
 replace-with = "vendor+git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
 
-[source."git+https://github.com/zed-industries/dap-types?rev=be69a016ba710191b9fdded28c8b042af4b617f7"]
+[source."git+https://github.com/zed-industries/dap-types?rev=68516de327fa1be15214133a0a2e52a12982ce75"]
 git = "https://github.com/zed-industries/dap-types"
-rev = "be69a016ba710191b9fdded28c8b042af4b617f7"
-replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=be69a016ba710191b9fdded28c8b042af4b617f7"
+rev = "68516de327fa1be15214133a0a2e52a12982ce75"
+replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=68516de327fa1be15214133a0a2e52a12982ce75"
 
 [source."git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 git = "https://github.com/zed-industries/font-kit"
@@ -126,6 +131,9 @@ directory = "vendor/git-89f77308e29f7200"
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
 
+[source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
+directory = "vendor/git-faabd69b6aaf8800"
+
 [source."vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
 directory = "vendor/git-de67a384b9632400"
 
@@ -147,8 +155,8 @@ directory = "vendor/git-f522f1a90c6f9100"
 [source."vendor+git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"]
 directory = "vendor/git-8b21c0b6ffa27e00"
 
-[source."vendor+git+https://github.com/zed-industries/dap-types?rev=be69a016ba710191b9fdded28c8b042af4b617f7"]
-directory = "vendor/git-99ad3d13adffa400"
+[source."vendor+git+https://github.com/zed-industries/dap-types?rev=68516de327fa1be15214133a0a2e52a12982ce75"]
+directory = "vendor/git-da00e1a7ec35bc00"
 
 [source."vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 directory = "vendor/git-c45c058305247000"
