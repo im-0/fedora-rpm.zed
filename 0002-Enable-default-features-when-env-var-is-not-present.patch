@@ -1,4 +1,4 @@
-From e1fe6a975973e8b307ef9798a2a543a04ccdf5e1 Mon Sep 17 00:00:00 2001
+From 2d02033f2b23738786a3081b79114a6f0f6f9efa Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:49:26 +0100
 Subject: [PATCH 2/2] Enable default features when env var is not present
@@ -14,10 +14,10 @@ string:
  1 file changed, 11 insertions(+)
 
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index cc66d3500a26..613a142e95e2 100644
+index 51821c0a28cb..f9e11b51d58b 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -610,6 +610,17 @@ fn main() {
+@@ -651,6 +651,17 @@ Error: Running Zed as root or via sudo is unsupported.
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
          let feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
