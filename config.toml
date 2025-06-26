@@ -26,10 +26,10 @@ git = "https://github.com/jj-vcs/jj"
 rev = "e18eb8e05efaa153fad5ef46576af145bba1807f"
 replace-with = "vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"
 
-[source."git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
+[source."git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"]
 git = "https://github.com/kvark/blade"
-rev = "416375211bb0b5826b3584dccdb6a43369e499ad"
-replace-with = "vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"
+rev = "e0ec4e720957edd51b945b64dd85605ea54bcfe5"
+replace-with = "vendor+git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 git = "https://github.com/microsoft/python-environment-tools.git"
@@ -55,11 +55,6 @@ replace-with = "vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=8
 git = "https://github.com/zed-industries/async-stripe"
 rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 replace-with = "vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"
-
-[source."git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"]
-git = "https://github.com/zed-industries/cpal"
-rev = "fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
-replace-with = "vendor+git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
 
 [source."git+https://github.com/zed-industries/dap-types?rev=b40956a7f4d1939da67429d941389ee306a3a308"]
 git = "https://github.com/zed-industries/dap-types"
@@ -134,8 +129,8 @@ directory = "vendor/git-cb1d338d87d36500"
 [source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 directory = "vendor/git-faabd69b6aaf8800"
 
-[source."vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
-directory = "vendor/git-de67a384b9632400"
+[source."vendor+git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"]
+directory = "vendor/git-336cb414364b3100"
 
 [source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 directory = "vendor/git-c448ea69363ad400"
@@ -151,9 +146,6 @@ directory = "vendor/git-b196757ea45daa00"
 
 [source."vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"]
 directory = "vendor/git-f522f1a90c6f9100"
-
-[source."vendor+git+https://github.com/zed-industries/cpal?rev=fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"]
-directory = "vendor/git-8b21c0b6ffa27e00"
 
 [source."vendor+git+https://github.com/zed-industries/dap-types?rev=b40956a7f4d1939da67429d941389ee306a3a308"]
 directory = "vendor/git-25944e7fb4708600"
