@@ -56,20 +56,20 @@ git = "https://github.com/zed-industries/async-stripe"
 rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 replace-with = "vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 
-[source."git+https://github.com/zed-industries/dap-types?rev=b40956a7f4d1939da67429d941389ee306a3a308"]
+[source."git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"]
 git = "https://github.com/zed-industries/dap-types"
-rev = "b40956a7f4d1939da67429d941389ee306a3a308"
-replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=b40956a7f4d1939da67429d941389ee306a3a308"
+rev = "7f39295b441614ca9dbf44293e53c32f666897f9"
+replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"
 
 [source."git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 git = "https://github.com/zed-industries/font-kit"
 rev = "5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 
-[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=80bb8f4c9112789f7c24cc98d8423010977806a6"]
+[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
-rev = "80bb8f4c9112789f7c24cc98d8423010977806a6"
-replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=80bb8f4c9112789f7c24cc98d8423010977806a6"
+rev = "d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
+replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
 
 [source."git+https://github.com/zed-industries/lsp-types?rev=c9c189f1c5dd53c624a419ce35bc77ad6a908d18"]
 git = "https://github.com/zed-industries/lsp-types"
@@ -105,6 +105,11 @@ replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-go-work
 git = "https://github.com/zed-industries/tree-sitter-heex"
 rev = "1dd45142fbb05562e35b2040c6129c9bca346592"
 replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"
+
+[source."git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"]
+git = "https://github.com/zed-industries/tree-sitter-python"
+rev = "218fcbf3fda3d029225f3dec005cb497d111b35e"
+replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"
 
 [source."git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 git = "https://github.com/zed-industries/tree-sitter-yaml"
@@ -147,14 +152,14 @@ directory = "vendor/git-b196757ea45daa00"
 [source."vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"]
 directory = "vendor/git-f522f1a90c6f9100"
 
-[source."vendor+git+https://github.com/zed-industries/dap-types?rev=b40956a7f4d1939da67429d941389ee306a3a308"]
-directory = "vendor/git-25944e7fb4708600"
+[source."vendor+git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"]
+directory = "vendor/git-ff65f52072428e00"
 
 [source."vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 directory = "vendor/git-c45c058305247000"
 
-[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=80bb8f4c9112789f7c24cc98d8423010977806a6"]
-directory = "vendor/git-0f90345065352000"
+[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"]
+directory = "vendor/git-e9310a327b911e00"
 
 [source."vendor+git+https://github.com/zed-industries/lsp-types?rev=c9c189f1c5dd53c624a419ce35bc77ad6a908d18"]
 directory = "vendor/git-4d7f4c2095d0da00"
@@ -176,6 +181,9 @@ directory = "vendor/git-74c32046d1be8500"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"]
 directory = "vendor/git-76950368d299f300"
+
+[source."vendor+git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"]
+directory = "vendor/git-97b49793faa0ae00"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 directory = "vendor/git-b178c6aaab81ed00"
