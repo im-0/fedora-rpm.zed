@@ -26,10 +26,10 @@ git = "https://github.com/jj-vcs/jj"
 rev = "e18eb8e05efaa153fad5ef46576af145bba1807f"
 replace-with = "vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"
 
-[source."git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"]
+[source."git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
 git = "https://github.com/kvark/blade"
-rev = "e0ec4e720957edd51b945b64dd85605ea54bcfe5"
-replace-with = "vendor+git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"
+rev = "416375211bb0b5826b3584dccdb6a43369e499ad"
+replace-with = "vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 git = "https://github.com/microsoft/python-environment-tools.git"
@@ -134,8 +134,8 @@ directory = "vendor/git-cb1d338d87d36500"
 [source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 directory = "vendor/git-faabd69b6aaf8800"
 
-[source."vendor+git+https://github.com/kvark/blade?rev=e0ec4e720957edd51b945b64dd85605ea54bcfe5"]
-directory = "vendor/git-336cb414364b3100"
+[source."vendor+git+https://github.com/kvark/blade?rev=416375211bb0b5826b3584dccdb6a43369e499ad"]
+directory = "vendor/git-de67a384b9632400"
 
 [source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 directory = "vendor/git-c448ea69363ad400"

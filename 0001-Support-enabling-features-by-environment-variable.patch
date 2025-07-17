@@ -1,7 +1,7 @@
-From ab702fbf9efb1f4b9e39af14a807cefcbc1d1449 Mon Sep 17 00:00:00 2001
+From db60aaebace141a38571bd6c14ee3b3fe3b9b074 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
-Subject: [PATCH 1/2] Support enabling features by environment variable
+Subject: [PATCH] Support enabling features by environment variable
 
 This adds new environment variable `ZED_ENABLE_EXPERIMENTAL_FEATURES`
 that accepts comma-separated list of features:
@@ -22,10 +22,10 @@ This patch also removes the ability to disable features at runtime.
  4 files changed, 27 insertions(+), 2 deletions(-)
 
 diff --git a/Cargo.lock b/Cargo.lock
-index d6eef3df7e52..5e086a7bb80f 100644
+index ed9b0b4f0e9e..8b0a511a9397 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -19886,6 +19886,7 @@ dependencies = [
+@@ -20025,6 +20025,7 @@ dependencies = [
   "extension",
   "extension_host",
   "extensions_ui",
@@ -34,10 +34,10 @@ index d6eef3df7e52..5e086a7bb80f 100644
   "file_finder",
   "fs",
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index 6c0cb763ef9e..1d67b6b75f34 100644
+index 2c2bbfe30db1..0893be6ff5a5 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -167,7 +167,9 @@ impl FeatureFlagAppExt for App {
+@@ -178,7 +178,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -49,7 +49,7 @@ index 6c0cb763ef9e..1d67b6b75f34 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/Cargo.toml b/crates/zed/Cargo.toml
-index a75a5c81634e..6cdf01e4b6b9 100644
+index 4d6c1871c7e1..e252d5e21777 100644
 --- a/crates/zed/Cargo.toml
 +++ b/crates/zed/Cargo.toml
 @@ -55,6 +55,7 @@ env_logger.workspace = true
@@ -61,7 +61,7 @@ index a75a5c81634e..6cdf01e4b6b9 100644
  file_finder.workspace = true
  fs.workspace = true
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 8ea0d6818131..51821c0a28cb 100644
+index d3727a06dc7a..ab817cc008fb 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -11,6 +11,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
@@ -74,14 +74,14 @@ index 8ea0d6818131..51821c0a28cb 100644
  use git::GitHostingProviderRegistry;
 @@ -31,7 +32,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
- use settings::{Settings, SettingsStore, watch_config_file};
+ use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use std::{
 -    env,
 +    env::{self, VarError},
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -649,6 +650,26 @@ Error: Running Zed as root or via sudo is unsupported.
+@@ -640,6 +641,26 @@ pub fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
@@ -109,5 +109,5 @@ index 8ea0d6818131..51821c0a28cb 100644
  
          cx.spawn({
 -- 
-2.49.0
+2.50.1
 
