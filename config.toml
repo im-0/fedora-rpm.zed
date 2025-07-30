@@ -71,10 +71,10 @@ git = "https://github.com/zed-industries/livekit-rust-sdks"
 rev = "d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
 replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=6add7052b598ea1f40f7e8913622c3958b009b60"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "6add7052b598ea1f40f7e8913622c3958b009b60"
-replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=6add7052b598ea1f40f7e8913622c3958b009b60"
+rev = "39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"
+replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"
 
 [source."git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
 git = "https://github.com/zed-industries/notify.git"
@@ -86,10 +86,10 @@ git = "https://github.com/zed-industries/reqwest.git"
 rev = "951c770a32f1998d6e999cef3e59e0013e6c4415"
 replace-with = "vendor+git+https://github.com/zed-industries/reqwest.git?rev=951c770a32f1998d6e999cef3e59e0013e6c4415"
 
-[source."git+https://github.com/zed-industries/scap?rev=270538dc780f5240723233ff901e1054641ed318"]
+[source."git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"]
 git = "https://github.com/zed-industries/scap"
-rev = "270538dc780f5240723233ff901e1054641ed318"
-replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=270538dc780f5240723233ff901e1054641ed318"
+rev = "808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
+replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
 
 [source."git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 git = "https://github.com/zed-industries/tree-sitter-git-commit"
@@ -115,6 +115,11 @@ replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-python?
 git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
 replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
+
+[source."git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
+git = "https://github.com/zed-industries/windows-capture.git"
+rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
+replace-with = "vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 
 [source."vendor+crates-io"]
 directory = "vendor/registry-40351f815f426200"
@@ -161,8 +166,8 @@ directory = "vendor/git-c45c058305247000"
 [source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"]
 directory = "vendor/git-e9310a327b911e00"
 
-[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=6add7052b598ea1f40f7e8913622c3958b009b60"]
-directory = "vendor/git-52b56bb173bbe100"
+[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
+directory = "vendor/git-e0542366584abb00"
 
 [source."vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
 directory = "vendor/git-410bfd19934ebc00"
@@ -170,8 +175,8 @@ directory = "vendor/git-410bfd19934ebc00"
 [source."vendor+git+https://github.com/zed-industries/reqwest.git?rev=951c770a32f1998d6e999cef3e59e0013e6c4415"]
 directory = "vendor/git-bba7876b693a1e00"
 
-[source."vendor+git+https://github.com/zed-industries/scap?rev=270538dc780f5240723233ff901e1054641ed318"]
-directory = "vendor/git-e750200c63f21a00"
+[source."vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"]
+directory = "vendor/git-541b859a21f5d100"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 directory = "vendor/git-1b6ce54df5d02b00"
@@ -187,6 +192,9 @@ directory = "vendor/git-97b49793faa0ae00"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 directory = "vendor/git-b178c6aaab81ed00"
+
+[source."vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
+directory = "vendor/git-18f277c2e40a8600"
 
 [source.vendored-sources]
 directory = "vendor"
