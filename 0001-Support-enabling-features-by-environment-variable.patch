@@ -1,4 +1,4 @@
-From db60aaebace141a38571bd6c14ee3b3fe3b9b074 Mon Sep 17 00:00:00 2001
+From ba0a12a5bf06de7dfe789da5b8cbb318fa79a199 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -15,29 +15,15 @@ allowed to access.
 
 This patch also removes the ability to disable features at runtime.
 ---
- Cargo.lock                                |  1 +
  crates/feature_flags/src/feature_flags.rs |  4 +++-
- crates/zed/Cargo.toml                     |  1 +
  crates/zed/src/main.rs                    | 23 ++++++++++++++++++++++-
- 4 files changed, 27 insertions(+), 2 deletions(-)
+ 2 files changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/Cargo.lock b/Cargo.lock
-index ed9b0b4f0e9e..8b0a511a9397 100644
---- a/Cargo.lock
-+++ b/Cargo.lock
-@@ -20025,6 +20025,7 @@ dependencies = [
-  "extension",
-  "extension_host",
-  "extensions_ui",
-+ "feature_flags",
-  "feedback",
-  "file_finder",
-  "fs",
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index 2c2bbfe30db1..0893be6ff5a5 100644
+index ef357adf3599..8444989292c0 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -178,7 +178,9 @@ impl FeatureFlagAppExt for App {
+@@ -187,7 +187,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -48,23 +34,11 @@ index 2c2bbfe30db1..0893be6ff5a5 100644
      }
  
      fn set_staff(&mut self, staff: bool) {
-diff --git a/crates/zed/Cargo.toml b/crates/zed/Cargo.toml
-index 4d6c1871c7e1..e252d5e21777 100644
---- a/crates/zed/Cargo.toml
-+++ b/crates/zed/Cargo.toml
-@@ -55,6 +55,7 @@ env_logger.workspace = true
- extension.workspace = true
- extension_host.workspace = true
- extensions_ui.workspace = true
-+feature_flags.workspace = true
- feedback.workspace = true
- file_finder.workspace = true
- fs.workspace = true
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index d3727a06dc7a..ab817cc008fb 100644
+index b02c6af0b0ad..98129fe2162d 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -11,6 +11,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+@@ -12,6 +12,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
  use editor::Editor;
  use extension::ExtensionHostProxy;
  use extension_host::ExtensionStore;
@@ -72,7 +46,7 @@ index d3727a06dc7a..ab817cc008fb 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -31,7 +32,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+@@ -32,7 +33,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
  use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use std::{
@@ -81,7 +55,7 @@ index d3727a06dc7a..ab817cc008fb 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -640,6 +641,26 @@ pub fn main() {
+@@ -677,6 +678,26 @@ pub fn main() {
          cx.set_menus(app_menus());
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  

@@ -21,6 +21,11 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 
+[source."git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"]
+git = "https://github.com/deviant-forks/yawc"
+rev = "1899688f3e69ace4545aceb97b2a13881cf26142"
+replace-with = "vendor+git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"
+
 [source."git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 git = "https://github.com/jj-vcs/jj"
 rev = "e18eb8e05efaa153fad5ef46576af145bba1807f"
@@ -56,20 +61,20 @@ git = "https://github.com/zed-industries/async-stripe"
 rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 replace-with = "vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 
-[source."git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"]
+[source."git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 git = "https://github.com/zed-industries/dap-types"
-rev = "7f39295b441614ca9dbf44293e53c32f666897f9"
-replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"
+rev = "1b461b310481d01e02b2603c16d7144b926339f8"
+replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"
 
 [source."git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 git = "https://github.com/zed-industries/font-kit"
 rev = "5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 
-[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"]
+[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
-rev = "d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
-replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"
+rev = "383e5377f8b7de1f8627ee16f0cf11c5293337bd"
+replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"
 
 [source."git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
 git = "https://github.com/zed-industries/lsp-types"
@@ -90,6 +95,11 @@ replace-with = "vendor+git+https://github.com/zed-industries/reqwest.git?rev=951
 git = "https://github.com/zed-industries/scap"
 rev = "808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
 replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
+
+[source."git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
+git = "https://github.com/zed-industries/tiktoken-rs"
+rev = "30c32a4522751699adeda0d5840c71c3b75ae73d"
+replace-with = "vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"
 
 [source."git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 git = "https://github.com/zed-industries/tree-sitter-git-commit"
@@ -136,6 +146,9 @@ directory = "vendor/git-89f77308e29f7200"
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
 
+[source."vendor+git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"]
+directory = "vendor/git-acc5c17d11bf5d00"
+
 [source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 directory = "vendor/git-faabd69b6aaf8800"
 
@@ -157,14 +170,14 @@ directory = "vendor/git-b196757ea45daa00"
 [source."vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"]
 directory = "vendor/git-f522f1a90c6f9100"
 
-[source."vendor+git+https://github.com/zed-industries/dap-types?rev=7f39295b441614ca9dbf44293e53c32f666897f9"]
-directory = "vendor/git-ff65f52072428e00"
+[source."vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
+directory = "vendor/git-cb580ee070f26500"
 
 [source."vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 directory = "vendor/git-c45c058305247000"
 
-[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=d2eade7a6b15d6dbdb38ba12a1ff7bf07fcebba4"]
-directory = "vendor/git-e9310a327b911e00"
+[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"]
+directory = "vendor/git-7aef631e7e10df00"
 
 [source."vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
 directory = "vendor/git-e0542366584abb00"
@@ -177,6 +190,9 @@ directory = "vendor/git-bba7876b693a1e00"
 
 [source."vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"]
 directory = "vendor/git-541b859a21f5d100"
+
+[source."vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
+directory = "vendor/git-6661a674d8cd9700"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 directory = "vendor/git-1b6ce54df5d02b00"
