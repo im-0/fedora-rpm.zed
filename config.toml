@@ -71,10 +71,10 @@ git = "https://github.com/zed-industries/font-kit"
 rev = "5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
 
-[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"]
+[source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
-rev = "383e5377f8b7de1f8627ee16f0cf11c5293337bd"
-replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"
+rev = "5f04705ac3f356350ae31534ffbc476abc9ea83d"
+replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"
 
 [source."git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
 git = "https://github.com/zed-industries/lsp-types"
@@ -176,8 +176,8 @@ directory = "vendor/git-cb580ee070f26500"
 [source."vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
 directory = "vendor/git-c45c058305247000"
 
-[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=383e5377f8b7de1f8627ee16f0cf11c5293337bd"]
-directory = "vendor/git-7aef631e7e10df00"
+[source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
+directory = "vendor/git-a85499770cd6ea00"
 
 [source."vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
 directory = "vendor/git-e0542366584abb00"
