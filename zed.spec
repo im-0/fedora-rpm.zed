@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.199.6
+Version:        0.200.4
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -21,6 +21,7 @@ Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name
 #     $ tar vcJf zed-X.Y.Z.cargo-vendor.tar.xz zed-X.Y.Z
 Source1:    %{name}-%{version}.cargo-vendor.tar.xz
 Source2:    config.toml
+Source3:    logo_96.svg
 
 # Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
 Source401:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-b99fd2c-6/webrtc-linux-x64-release.zip
@@ -122,7 +123,7 @@ desktop-file-install                                    \
 
 #install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
 #install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
-install -Dm644 assets/icons/logo_96.svg %{buildroot}%{_datadir}/pixmaps/%app_id.svg
+install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/%app_id.svg
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 
