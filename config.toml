@@ -11,20 +11,10 @@ git = "https://github.com/KillTheMule/nvim-rs"
 rev = "764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 replace-with = "vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 
-[source."git+https://github.com/XDeme1/xim-rs?rev=d50d461764c2213655cd9cf65a0ea94c70d3c4fd"]
-git = "https://github.com/XDeme1/xim-rs"
-rev = "d50d461764c2213655cd9cf65a0ea94c70d3c4fd"
-replace-with = "vendor+git+https://github.com/XDeme1/xim-rs?rev=d50d461764c2213655cd9cf65a0ea94c70d3c4fd"
-
 [source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
-
-[source."git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"]
-git = "https://github.com/deviant-forks/yawc"
-rev = "1899688f3e69ace4545aceb97b2a13881cf26142"
-replace-with = "vendor+git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"
 
 [source."git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 git = "https://github.com/jj-vcs/jj"
@@ -55,11 +45,6 @@ replace-with = "vendor+git+https://github.com/zed-industries/alacritty.git?branc
 git = "https://github.com/zed-industries/async-pipe-rs"
 rev = "82d00a04211cf4e1236029aa03e6b6ce2a74c553"
 replace-with = "vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"
-
-[source."git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"]
-git = "https://github.com/zed-industries/async-stripe"
-rev = "3672dd4efb7181aa597bf580bf5a2f5d23db6735"
-replace-with = "vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"
 
 [source."git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 git = "https://github.com/zed-industries/dap-types"
@@ -131,6 +116,11 @@ git = "https://github.com/zed-industries/windows-capture.git"
 rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 replace-with = "vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 
+[source."git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"]
+git = "https://github.com/zed-industries/xim-rs"
+rev = "c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"
+replace-with = "vendor+git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"
+
 [source."vendor+crates-io"]
 directory = "vendor/registry-40351f815f426200"
 
@@ -140,14 +130,8 @@ directory = "vendor/git-ff8ae95cdab46f00"
 [source."vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"]
 directory = "vendor/git-f96fa7344c315a00"
 
-[source."vendor+git+https://github.com/XDeme1/xim-rs?rev=d50d461764c2213655cd9cf65a0ea94c70d3c4fd"]
-directory = "vendor/git-89f77308e29f7200"
-
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
-
-[source."vendor+git+https://github.com/deviant-forks/yawc?rev=1899688f3e69ace4545aceb97b2a13881cf26142"]
-directory = "vendor/git-acc5c17d11bf5d00"
 
 [source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
 directory = "vendor/git-faabd69b6aaf8800"
@@ -166,9 +150,6 @@ directory = "vendor/git-ed484c4044795a00"
 
 [source."vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 directory = "vendor/git-b196757ea45daa00"
-
-[source."vendor+git+https://github.com/zed-industries/async-stripe?rev=3672dd4efb7181aa597bf580bf5a2f5d23db6735"]
-directory = "vendor/git-f522f1a90c6f9100"
 
 [source."vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 directory = "vendor/git-cb580ee070f26500"
@@ -211,6 +192,9 @@ directory = "vendor/git-b178c6aaab81ed00"
 
 [source."vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
 directory = "vendor/git-18f277c2e40a8600"
+
+[source."vendor+git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"]
+directory = "vendor/git-4dcb2e5092afe300"
 
 [source.vendored-sources]
 directory = "vendor"
