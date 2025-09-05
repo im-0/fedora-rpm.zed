@@ -1,0 +1,52 @@
+From 9a97f9465b08954ef3dc1729d3ad6abed0485620 Mon Sep 17 00:00:00 2001
+From: Finn Evers <finn@zed.dev>
+Date: Thu, 28 Aug 2025 00:57:08 +0200
+Subject: [PATCH] rust: Improve highlighting within macros (#37049)
+
+This makes sure we do not apply the highlights for snake case
+identifiers as well as paths for attributes too broadly to all types of
+macros, which should make macros much more readable overall whilst
+keeping the highlighting for the attribute items.
+
+| Before | After |
+| --- | --- |
+| <img width="1414" height="958" alt="Bildschirmfoto 2025-08-28 um 00 37
+58"
+src="https://github.com/user-attachments/assets/1254b9a2-d07a-4be4-9b4f-555a7c640302"
+/> | <img width="1414" height="958" alt="Bildschirmfoto 2025-08-28 um 00
+37 38"
+src="https://github.com/user-attachments/assets/5f6dd66c-5469-4f27-9f1d-0a6e6e8d8085"
+/> |
+
+Release Notes:
+
+- rust: Improved highlighting within macros.
+---
+ crates/languages/src/rust/highlights.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/crates/languages/src/rust/highlights.scm b/crates/languages/src/rust/highlights.scm
+index 1c46061827cd..3f44c5fc0e46 100644
+--- a/crates/languages/src/rust/highlights.scm
++++ b/crates/languages/src/rust/highlights.scm
+@@ -195,12 +195,13 @@ operator: "/" @operator
+ (attribute_item (attribute [
+   (identifier) @attribute
+   (scoped_identifier name: (identifier) @attribute)
++  (token_tree (identifier) @attribute (#match? @attribute "^[a-z\\d_]*$"))
++  (token_tree (identifier) @variable "::" (identifier) @type (#match? @type "^[A-Z]"))
+ ]))
++
+ (inner_attribute_item (attribute [
+   (identifier) @attribute
+   (scoped_identifier name: (identifier) @attribute)
++  (token_tree (identifier) @attribute (#match? @attribute "^[a-z\\d_]*$"))
++  (token_tree (identifier) @variable "::" (identifier) @type (#match? @type "^[A-Z]"))
+ ]))
+-; Match nested snake case identifiers in attribute items.
+-(token_tree (identifier) @attribute (#match? @attribute "^[a-z\\d_]*$"))
+-; Override the attribute match for paths in scoped type/enum identifiers.
+-(token_tree (identifier) @variable "::" (identifier) @type (#match? @type "^[A-Z]"))
+-- 
+2.51.0
+
