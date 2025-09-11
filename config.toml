@@ -36,6 +36,11 @@ git = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
 rev = "9a23c1a96c0513d8fc6520972beedd419a973539"
 replace-with = "vendor+git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"
 
+[source."git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5cb9b693cfd7bfacab1d9ff4acac1a4150700609"]
+git = "https://github.com/tree-sitter/tree-sitter-cpp"
+rev = "5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
+replace-with = "vendor+git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
+
 [source."git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"]
 git = "https://github.com/zed-industries/alacritty.git"
 branch = "add-hush-login-flag"
@@ -61,10 +66,10 @@ git = "https://github.com/zed-industries/livekit-rust-sdks"
 rev = "5f04705ac3f356350ae31534ffbc476abc9ea83d"
 replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"
-replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"
+rev = "0874f8742fe55b4dc94308c1e3c0069710d8eeaf"
+replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"
 
 [source."git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
 git = "https://github.com/zed-industries/notify.git"
@@ -145,6 +150,9 @@ directory = "vendor/git-c448ea69363ad400"
 [source."vendor+git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 directory = "vendor/git-e1d1576dcccac800"
 
+[source."vendor+git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5cb9b693cfd7bfacab1d9ff4acac1a4150700609"]
+directory = "vendor/git-613a5153d225b500"
+
 [source."vendor+git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"]
 directory = "vendor/git-ed484c4044795a00"
 
@@ -160,8 +168,8 @@ directory = "vendor/git-c45c058305247000"
 [source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 directory = "vendor/git-a85499770cd6ea00"
 
-[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=39f629bdd03d59abd786ed9fc27e8bca02c0c0ec"]
-directory = "vendor/git-e0542366584abb00"
+[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"]
+directory = "vendor/git-c7ad2d5002a15100"
 
 [source."vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
 directory = "vendor/git-410bfd19934ebc00"
