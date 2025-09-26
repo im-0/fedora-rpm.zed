@@ -11,6 +11,11 @@ git = "https://github.com/KillTheMule/nvim-rs"
 rev = "764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 replace-with = "vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 
+[source."git+https://github.com/RustAudio/rodio?branch=better_wav_output"]
+git = "https://github.com/RustAudio/rodio"
+branch = "better_wav_output"
+replace-with = "vendor+git+https://github.com/RustAudio/rodio?branch=better_wav_output"
+
 [source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
@@ -50,6 +55,11 @@ replace-with = "vendor+git+https://github.com/zed-industries/alacritty.git?branc
 git = "https://github.com/zed-industries/async-pipe-rs"
 rev = "82d00a04211cf4e1236029aa03e6b6ce2a74c553"
 replace-with = "vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"
+
+[source."git+https://github.com/zed-industries/candle?branch=9.1-patched"]
+git = "https://github.com/zed-industries/candle"
+branch = "9.1-patched"
+replace-with = "vendor+git+https://github.com/zed-industries/candle?branch=9.1-patched"
 
 [source."git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 git = "https://github.com/zed-industries/dap-types"
@@ -135,6 +145,9 @@ directory = "vendor/git-ff8ae95cdab46f00"
 [source."vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"]
 directory = "vendor/git-f96fa7344c315a00"
 
+[source."vendor+git+https://github.com/RustAudio/rodio?branch=better_wav_output"]
+directory = "vendor/git-23e706e90dc1d000"
+
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
 
@@ -158,6 +171,9 @@ directory = "vendor/git-ed484c4044795a00"
 
 [source."vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 directory = "vendor/git-b196757ea45daa00"
+
+[source."vendor+git+https://github.com/zed-industries/candle?branch=9.1-patched"]
+directory = "vendor/git-a4ab442af7fc1f00"
 
 [source."vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 directory = "vendor/git-cb580ee070f26500"
