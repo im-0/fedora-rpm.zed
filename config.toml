@@ -46,11 +46,6 @@ git = "https://github.com/tree-sitter/tree-sitter-cpp"
 rev = "5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
 replace-with = "vendor+git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
 
-[source."git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"]
-git = "https://github.com/zed-industries/alacritty.git"
-branch = "add-hush-login-flag"
-replace-with = "vendor+git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"
-
 [source."git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 git = "https://github.com/zed-industries/async-pipe-rs"
 rev = "82d00a04211cf4e1236029aa03e6b6ce2a74c553"
@@ -165,9 +160,6 @@ directory = "vendor/git-e1d1576dcccac800"
 
 [source."vendor+git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5cb9b693cfd7bfacab1d9ff4acac1a4150700609"]
 directory = "vendor/git-613a5153d225b500"
-
-[source."vendor+git+https://github.com/zed-industries/alacritty.git?branch=add-hush-login-flag"]
-directory = "vendor/git-ed484c4044795a00"
 
 [source."vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 directory = "vendor/git-b196757ea45daa00"
