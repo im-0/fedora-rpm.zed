@@ -11,25 +11,14 @@ git = "https://github.com/KillTheMule/nvim-rs"
 rev = "764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 replace-with = "vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 
-[source."git+https://github.com/RustAudio/rodio?branch=better_wav_output"]
+[source."git+https://github.com/RustAudio/rodio"]
 git = "https://github.com/RustAudio/rodio"
-branch = "better_wav_output"
-replace-with = "vendor+git+https://github.com/RustAudio/rodio?branch=better_wav_output"
+replace-with = "vendor+git+https://github.com/RustAudio/rodio"
 
 [source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
-
-[source."git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
-git = "https://github.com/jj-vcs/jj"
-rev = "e18eb8e05efaa153fad5ef46576af145bba1807f"
-replace-with = "vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"
-
-[source."git+https://github.com/kvark/blade?rev=bfa594ea697d4b6326ea29f747525c85ecf933b9"]
-git = "https://github.com/kvark/blade"
-rev = "bfa594ea697d4b6326ea29f747525c85ecf933b9"
-replace-with = "vendor+git+https://github.com/kvark/blade?rev=bfa594ea697d4b6326ea29f747525c85ecf933b9"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 git = "https://github.com/microsoft/python-environment-tools.git"
@@ -111,11 +100,6 @@ git = "https://github.com/zed-industries/tree-sitter-heex"
 rev = "1dd45142fbb05562e35b2040c6129c9bca346592"
 replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"
 
-[source."git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"]
-git = "https://github.com/zed-industries/tree-sitter-python"
-rev = "218fcbf3fda3d029225f3dec005cb497d111b35e"
-replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"
-
 [source."git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
@@ -140,17 +124,11 @@ directory = "vendor/git-ff8ae95cdab46f00"
 [source."vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"]
 directory = "vendor/git-f96fa7344c315a00"
 
-[source."vendor+git+https://github.com/RustAudio/rodio?branch=better_wav_output"]
-directory = "vendor/git-23e706e90dc1d000"
+[source."vendor+git+https://github.com/RustAudio/rodio"]
+directory = "vendor/git-1b0c2d5337ba5b00"
 
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
 directory = "vendor/git-cb1d338d87d36500"
-
-[source."vendor+git+https://github.com/jj-vcs/jj?rev=e18eb8e05efaa153fad5ef46576af145bba1807f"]
-directory = "vendor/git-faabd69b6aaf8800"
-
-[source."vendor+git+https://github.com/kvark/blade?rev=bfa594ea697d4b6326ea29f747525c85ecf933b9"]
-directory = "vendor/git-95516b1f69c77a00"
 
 [source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
 directory = "vendor/git-c448ea69363ad400"
@@ -199,9 +177,6 @@ directory = "vendor/git-74c32046d1be8500"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"]
 directory = "vendor/git-76950368d299f300"
-
-[source."vendor+git+https://github.com/zed-industries/tree-sitter-python?rev=218fcbf3fda3d029225f3dec005cb497d111b35e"]
-directory = "vendor/git-97b49793faa0ae00"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 directory = "vendor/git-b178c6aaab81ed00"
