@@ -50,10 +50,10 @@ git = "https://github.com/zed-industries/dap-types"
 rev = "1b461b310481d01e02b2603c16d7144b926339f8"
 replace-with = "vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"
 
-[source."git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
+[source."git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"]
 git = "https://github.com/zed-industries/font-kit"
-rev = "5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
-replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"
+rev = "110523127440aefb11ce0cf280ae7c5071337ec5"
+replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"
 
 [source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
@@ -70,15 +70,15 @@ git = "https://github.com/zed-industries/notify.git"
 rev = "bbb9ea5ae52b253e095737847e367c30653a2e96"
 replace-with = "vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"
 
-[source."git+https://github.com/zed-industries/reqwest.git?rev=951c770a32f1998d6e999cef3e59e0013e6c4415"]
+[source."git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
 git = "https://github.com/zed-industries/reqwest.git"
-rev = "951c770a32f1998d6e999cef3e59e0013e6c4415"
-replace-with = "vendor+git+https://github.com/zed-industries/reqwest.git?rev=951c770a32f1998d6e999cef3e59e0013e6c4415"
+rev = "c15662463bda39148ba154100dd44d3fba5873a4"
+replace-with = "vendor+git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"
 
-[source."git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"]
+[source."git+https://github.com/zed-industries/scap?rev=4afea48c3b002197176fb19cd0f9b180dd36eaac"]
 git = "https://github.com/zed-industries/scap"
-rev = "808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
-replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"
+rev = "4afea48c3b002197176fb19cd0f9b180dd36eaac"
+replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=4afea48c3b002197176fb19cd0f9b180dd36eaac"
 
 [source."git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
 git = "https://github.com/zed-industries/tiktoken-rs"
@@ -110,10 +110,10 @@ git = "https://github.com/zed-industries/windows-capture.git"
 rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 replace-with = "vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 
-[source."git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"]
-git = "https://github.com/zed-industries/xim-rs"
-rev = "c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"
-replace-with = "vendor+git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"
+[source."git+https://github.com/zed-industries/xim-rs.git?rev=16f35a2c881b815a2b6cdfd6687988e84f8447d8"]
+git = "https://github.com/zed-industries/xim-rs.git"
+rev = "16f35a2c881b815a2b6cdfd6687988e84f8447d8"
+replace-with = "vendor+git+https://github.com/zed-industries/xim-rs.git?rev=16f35a2c881b815a2b6cdfd6687988e84f8447d8"
 
 [source."vendor+crates-io"]
 directory = "vendor/registry-40351f815f426200"
@@ -148,8 +148,8 @@ directory = "vendor/git-a4ab442af7fc1f00"
 [source."vendor+git+https://github.com/zed-industries/dap-types?rev=1b461b310481d01e02b2603c16d7144b926339f8"]
 directory = "vendor/git-cb580ee070f26500"
 
-[source."vendor+git+https://github.com/zed-industries/font-kit?rev=5474cfad4b719a72ec8ed2cb7327b2b01fd10568"]
-directory = "vendor/git-c45c058305247000"
+[source."vendor+git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"]
+directory = "vendor/git-1c60b132a5a26e00"
 
 [source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 directory = "vendor/git-a85499770cd6ea00"
@@ -160,11 +160,11 @@ directory = "vendor/git-c7ad2d5002a15100"
 [source."vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
 directory = "vendor/git-410bfd19934ebc00"
 
-[source."vendor+git+https://github.com/zed-industries/reqwest.git?rev=951c770a32f1998d6e999cef3e59e0013e6c4415"]
-directory = "vendor/git-bba7876b693a1e00"
+[source."vendor+git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
+directory = "vendor/git-bf64d24a29040800"
 
-[source."vendor+git+https://github.com/zed-industries/scap?rev=808aa5c45b41e8f44729d02e38fd00a2fe2722e7"]
-directory = "vendor/git-541b859a21f5d100"
+[source."vendor+git+https://github.com/zed-industries/scap?rev=4afea48c3b002197176fb19cd0f9b180dd36eaac"]
+directory = "vendor/git-b020bc0fd3c9c300"
 
 [source."vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
 directory = "vendor/git-6661a674d8cd9700"
@@ -184,8 +184,8 @@ directory = "vendor/git-b178c6aaab81ed00"
 [source."vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
 directory = "vendor/git-18f277c2e40a8600"
 
-[source."vendor+git+https://github.com/zed-industries/xim-rs?rev=c0a70c1bd2ce197364216e5e818a2cb3adb99a8d"]
-directory = "vendor/git-4dcb2e5092afe300"
+[source."vendor+git+https://github.com/zed-industries/xim-rs.git?rev=16f35a2c881b815a2b6cdfd6687988e84f8447d8"]
+directory = "vendor/git-9b47768dea13f000"
 
 [source.vendored-sources]
 directory = "vendor"

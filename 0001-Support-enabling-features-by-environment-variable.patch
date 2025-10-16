@@ -1,4 +1,4 @@
-From ba0a12a5bf06de7dfe789da5b8cbb318fa79a199 Mon Sep 17 00:00:00 2001
+From d3377bb00f578b4e8cb65adb38bd4ac5dd227728 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -20,10 +20,10 @@ This patch also removes the ability to disable features at runtime.
  2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index ef357adf3599..8444989292c0 100644
+index 1b66b291b527..6408ae6c51e8 100644
 --- a/crates/feature_flags/src/feature_flags.rs
 +++ b/crates/feature_flags/src/feature_flags.rs
-@@ -187,7 +187,9 @@ impl FeatureFlagAppExt for App {
+@@ -145,7 +145,9 @@ impl FeatureFlagAppExt for App {
      fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
          let feature_flags = self.default_global::<FeatureFlags>();
          feature_flags.staff = staff;
@@ -35,10 +35,10 @@ index ef357adf3599..8444989292c0 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index b02c6af0b0ad..98129fe2162d 100644
+index 3c5b71777219..0ee7a2501aa5 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -12,6 +12,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+@@ -13,6 +13,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
  use editor::Editor;
  use extension::ExtensionHostProxy;
  use extension_host::ExtensionStore;
@@ -46,7 +46,7 @@ index b02c6af0b0ad..98129fe2162d 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -32,7 +33,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+@@ -34,7 +35,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
  use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use std::{
@@ -55,8 +55,8 @@ index b02c6af0b0ad..98129fe2162d 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -677,6 +678,26 @@ pub fn main() {
-         cx.set_menus(app_menus());
+@@ -686,6 +687,26 @@ pub fn main() {
+         cx.set_menus(menus);
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
 +        let feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
@@ -83,5 +83,5 @@ index b02c6af0b0ad..98129fe2162d 100644
  
          cx.spawn({
 -- 
-2.50.1
+2.51.0
 
