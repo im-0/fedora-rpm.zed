@@ -1,29 +1,25 @@
 [source.crates-io]
 replace-with = "vendor+crates-io"
 
-[source."git+https://github.com/ConradIrwin/runtimed?rev=7130c804216b6914355d15d0b91ea91f6babd734"]
-git = "https://github.com/ConradIrwin/runtimed"
-rev = "7130c804216b6914355d15d0b91ea91f6babd734"
-replace-with = "vendor+git+https://github.com/ConradIrwin/runtimed?rev=7130c804216b6914355d15d0b91ea91f6babd734"
-
 [source."git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"]
 git = "https://github.com/KillTheMule/nvim-rs"
 rev = "764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 replace-with = "vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 
-[source."git+https://github.com/RustAudio/rodio"]
+[source."git+https://github.com/RustAudio/rodio?rev=e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"]
 git = "https://github.com/RustAudio/rodio"
-replace-with = "vendor+git+https://github.com/RustAudio/rodio"
+rev = "e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"
+replace-with = "vendor+git+https://github.com/RustAudio/rodio?rev=e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"
 
-[source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
+[source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"]
 git = "https://github.com/camdencheek/tree-sitter-go-mod"
-rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
-replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"
+rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
+replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 
-[source."git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
+[source."git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"]
 git = "https://github.com/microsoft/python-environment-tools.git"
-rev = "845945b830297a50de0e24020b980a65e4820559"
-replace-with = "vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"
+rev = "e97b9508befa0062929da65a01054d25c4be861c"
+replace-with = "vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"
 
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 git = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
@@ -55,20 +51,25 @@ git = "https://github.com/zed-industries/font-kit"
 rev = "110523127440aefb11ce0cf280ae7c5071337ec5"
 replace-with = "vendor+git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"
 
+[source."git+https://github.com/zed-industries/gh-workflow?rev=3eaa84abca0778eb54272f45a312cb24f9a0b435"]
+git = "https://github.com/zed-industries/gh-workflow"
+rev = "3eaa84abca0778eb54272f45a312cb24f9a0b435"
+replace-with = "vendor+git+https://github.com/zed-industries/gh-workflow?rev=3eaa84abca0778eb54272f45a312cb24f9a0b435"
+
 [source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 git = "https://github.com/zed-industries/livekit-rust-sdks"
 rev = "5f04705ac3f356350ae31534ffbc476abc9ea83d"
 replace-with = "vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=b71ab4eeb27d9758be8092020a46fe33fbca4e33"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "0874f8742fe55b4dc94308c1e3c0069710d8eeaf"
-replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"
+rev = "b71ab4eeb27d9758be8092020a46fe33fbca4e33"
+replace-with = "vendor+git+https://github.com/zed-industries/lsp-types?rev=b71ab4eeb27d9758be8092020a46fe33fbca4e33"
 
-[source."git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
+[source."git+https://github.com/zed-industries/notify.git?rev=b4588b2e5aee68f4c0e100f140e808cbce7b1419"]
 git = "https://github.com/zed-industries/notify.git"
-rev = "bbb9ea5ae52b253e095737847e367c30653a2e96"
-replace-with = "vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"
+rev = "b4588b2e5aee68f4c0e100f140e808cbce7b1419"
+replace-with = "vendor+git+https://github.com/zed-industries/notify.git?rev=b4588b2e5aee68f4c0e100f140e808cbce7b1419"
 
 [source."git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
 git = "https://github.com/zed-industries/reqwest.git"
@@ -100,6 +101,11 @@ git = "https://github.com/zed-industries/tree-sitter-heex"
 rev = "1dd45142fbb05562e35b2040c6129c9bca346592"
 replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"
 
+[source."git+https://github.com/zed-industries/tree-sitter-typescript?rev=e2c53597d6a5d9cf7bbe8dccde576fe1e46c5899"]
+git = "https://github.com/zed-industries/tree-sitter-typescript"
+rev = "e2c53597d6a5d9cf7bbe8dccde576fe1e46c5899"
+replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-typescript?rev=e2c53597d6a5d9cf7bbe8dccde576fe1e46c5899"
+
 [source."git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
@@ -118,20 +124,17 @@ replace-with = "vendor+git+https://github.com/zed-industries/xim-rs.git?rev=16f3
 [source."vendor+crates-io"]
 directory = "vendor/registry-40351f815f426200"
 
-[source."vendor+git+https://github.com/ConradIrwin/runtimed?rev=7130c804216b6914355d15d0b91ea91f6babd734"]
-directory = "vendor/git-ff8ae95cdab46f00"
-
 [source."vendor+git+https://github.com/KillTheMule/nvim-rs?rev=764dd270c642f77f10f3e19d05cc178a6cbe69f3"]
 directory = "vendor/git-f96fa7344c315a00"
 
-[source."vendor+git+https://github.com/RustAudio/rodio"]
-directory = "vendor/git-1b0c2d5337ba5b00"
+[source."vendor+git+https://github.com/RustAudio/rodio?rev=e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"]
+directory = "vendor/git-65bf93b9a266fb00"
 
-[source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"]
-directory = "vendor/git-cb1d338d87d36500"
+[source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"]
+directory = "vendor/git-37b237cfb3dbd500"
 
-[source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=845945b830297a50de0e24020b980a65e4820559"]
-directory = "vendor/git-c448ea69363ad400"
+[source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"]
+directory = "vendor/git-6b906fec4d54c600"
 
 [source."vendor+git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 directory = "vendor/git-e1d1576dcccac800"
@@ -151,14 +154,17 @@ directory = "vendor/git-cb580ee070f26500"
 [source."vendor+git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"]
 directory = "vendor/git-1c60b132a5a26e00"
 
+[source."vendor+git+https://github.com/zed-industries/gh-workflow?rev=3eaa84abca0778eb54272f45a312cb24f9a0b435"]
+directory = "vendor/git-015b50888f049500"
+
 [source."vendor+git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
 directory = "vendor/git-a85499770cd6ea00"
 
-[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=0874f8742fe55b4dc94308c1e3c0069710d8eeaf"]
-directory = "vendor/git-c7ad2d5002a15100"
+[source."vendor+git+https://github.com/zed-industries/lsp-types?rev=b71ab4eeb27d9758be8092020a46fe33fbca4e33"]
+directory = "vendor/git-28e5847969523900"
 
-[source."vendor+git+https://github.com/zed-industries/notify.git?rev=bbb9ea5ae52b253e095737847e367c30653a2e96"]
-directory = "vendor/git-410bfd19934ebc00"
+[source."vendor+git+https://github.com/zed-industries/notify.git?rev=b4588b2e5aee68f4c0e100f140e808cbce7b1419"]
+directory = "vendor/git-23bfb141a99c2a00"
 
 [source."vendor+git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
 directory = "vendor/git-bf64d24a29040800"
@@ -177,6 +183,9 @@ directory = "vendor/git-74c32046d1be8500"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-heex?rev=1dd45142fbb05562e35b2040c6129c9bca346592"]
 directory = "vendor/git-76950368d299f300"
+
+[source."vendor+git+https://github.com/zed-industries/tree-sitter-typescript?rev=e2c53597d6a5d9cf7bbe8dccde576fe1e46c5899"]
+directory = "vendor/git-e6df275f0ac83d00"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 directory = "vendor/git-b178c6aaab81ed00"

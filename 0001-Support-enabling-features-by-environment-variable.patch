@@ -1,4 +1,4 @@
-From d3377bb00f578b4e8cb65adb38bd4ac5dd227728 Mon Sep 17 00:00:00 2001
+From ddf409aed9c78d04cc32d12cf4fe86d1adae7e15 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -35,18 +35,18 @@ index 1b66b291b527..6408ae6c51e8 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 3c5b71777219..0ee7a2501aa5 100644
+index 9dba1b427d35..c2340368d69c 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -13,6 +13,7 @@ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+@@ -12,6 +12,7 @@ use crashes::InitCrashHandler;
+ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
  use editor::Editor;
  use extension::ExtensionHostProxy;
- use extension_host::ExtensionStore;
 +use feature_flags::FeatureFlagAppExt;
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -34,7 +35,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
+@@ -33,7 +34,7 @@ use release_channel::{AppCommitSha, AppVersion, ReleaseChannel};
  use session::{AppSession, Session};
  use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use std::{
@@ -55,7 +55,7 @@ index 3c5b71777219..0ee7a2501aa5 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -686,6 +687,26 @@ pub fn main() {
+@@ -694,6 +695,26 @@ pub fn main() {
          cx.set_menus(menus);
          initialize_workspace(app_state.clone(), prompt_builder, cx);
  
@@ -83,5 +83,5 @@ index 3c5b71777219..0ee7a2501aa5 100644
  
          cx.spawn({
 -- 
-2.51.0
+2.51.1
 
