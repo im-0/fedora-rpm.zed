@@ -16,10 +16,10 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 
-[source."git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"]
+[source."git+https://github.com/microsoft/python-environment-tools.git?rev=1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"]
 git = "https://github.com/microsoft/python-environment-tools.git"
-rev = "e97b9508befa0062929da65a01054d25c4be861c"
-replace-with = "vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"
+rev = "1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"
+replace-with = "vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"
 
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 git = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
@@ -35,6 +35,10 @@ replace-with = "vendor+git+https://github.com/tree-sitter/tree-sitter-cpp?rev=5c
 git = "https://github.com/zed-industries/async-pipe-rs"
 rev = "82d00a04211cf4e1236029aa03e6b6ce2a74c553"
 replace-with = "vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"
+
+[source."git+https://github.com/zed-industries/calloop"]
+git = "https://github.com/zed-industries/calloop"
+replace-with = "vendor+git+https://github.com/zed-industries/calloop"
 
 [source."git+https://github.com/zed-industries/candle?branch=9.1-patched"]
 git = "https://github.com/zed-industries/candle"
@@ -81,10 +85,10 @@ git = "https://github.com/zed-industries/scap"
 rev = "4afea48c3b002197176fb19cd0f9b180dd36eaac"
 replace-with = "vendor+git+https://github.com/zed-industries/scap?rev=4afea48c3b002197176fb19cd0f9b180dd36eaac"
 
-[source."git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
+[source."git+https://github.com/zed-industries/tiktoken-rs?rev=7249f999c5fdf9bf3cc5c288c964454e4dac0c00"]
 git = "https://github.com/zed-industries/tiktoken-rs"
-rev = "30c32a4522751699adeda0d5840c71c3b75ae73d"
-replace-with = "vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"
+rev = "7249f999c5fdf9bf3cc5c288c964454e4dac0c00"
+replace-with = "vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=7249f999c5fdf9bf3cc5c288c964454e4dac0c00"
 
 [source."git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 git = "https://github.com/zed-industries/tree-sitter-git-commit"
@@ -133,8 +137,8 @@ directory = "vendor/git-65bf93b9a266fb00"
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"]
 directory = "vendor/git-37b237cfb3dbd500"
 
-[source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=e97b9508befa0062929da65a01054d25c4be861c"]
-directory = "vendor/git-6b906fec4d54c600"
+[source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"]
+directory = "vendor/git-780ed65cab2d6a00"
 
 [source."vendor+git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
 directory = "vendor/git-e1d1576dcccac800"
@@ -144,6 +148,9 @@ directory = "vendor/git-613a5153d225b500"
 
 [source."vendor+git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 directory = "vendor/git-b196757ea45daa00"
+
+[source."vendor+git+https://github.com/zed-industries/calloop"]
+directory = "vendor/git-3311832209dd1700"
 
 [source."vendor+git+https://github.com/zed-industries/candle?branch=9.1-patched"]
 directory = "vendor/git-a4ab442af7fc1f00"
@@ -172,8 +179,8 @@ directory = "vendor/git-bf64d24a29040800"
 [source."vendor+git+https://github.com/zed-industries/scap?rev=4afea48c3b002197176fb19cd0f9b180dd36eaac"]
 directory = "vendor/git-b020bc0fd3c9c300"
 
-[source."vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=30c32a4522751699adeda0d5840c71c3b75ae73d"]
-directory = "vendor/git-6661a674d8cd9700"
+[source."vendor+git+https://github.com/zed-industries/tiktoken-rs?rev=7249f999c5fdf9bf3cc5c288c964454e4dac0c00"]
+directory = "vendor/git-836324f2babb1300"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
 directory = "vendor/git-1b6ce54df5d02b00"
