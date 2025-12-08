@@ -22,6 +22,7 @@ Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name
 Source1:    %{name}-%{version}.cargo-vendor.tar.xz
 Source2:    config.toml
 Source3:    logo_96.svg
+Source4:    config-mold.toml
 
 # Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
 Source401:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-b99fd2c-6/webrtc-linux-x64-release.zip
@@ -47,6 +48,7 @@ BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
 BuildRequires:  clang
 BuildRequires:  cmake
+BuildRequires:  mold
 
 ### for the desktop file
 BuildRequires:  desktop-file-utils
@@ -64,6 +66,7 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 %patch -P0 -p1
 
 cat %{SOURCE2} >>.cargo/config.toml
+cat %{SOURCE4} >>.cargo/config.toml
 
 %ifarch x86_64
 %setup -q -D -T -b401 -n %{crate}-%{version}
