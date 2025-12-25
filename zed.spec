@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.215.3
+Version:        0.217.3
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -29,6 +29,7 @@ Source401:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-
 Source402:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-b99fd2c-6/webrtc-linux-arm64-release.zip
 
 Patch0:     0001-Support-enabling-features-by-environment-variable.patch
+Patch1:     0001-Fix-gpui-build.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
@@ -64,6 +65,7 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 %setup -q -D -T -b1 -n %{crate}-%{version}
 
 %patch -P0 -p1
+%patch -P1 -p1
 
 cat %{SOURCE2} >>.cargo/config.toml
 cat %{SOURCE4} >>.cargo/config.toml
@@ -105,15 +107,13 @@ export LK_CUSTOM_WEBRTC="$( pwd )/../linux-x64-release"
 export LK_CUSTOM_WEBRTC="$( pwd )/../linux-arm64-release"
 %endif
 
+export RUSTFLAGS="-Copt-level=3 -Cdebuginfo=2 -Cstrip=none -Cforce-frame-pointers=yes -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn"
+
 # Build CLI
-pushd crates/cli/
-cargo build %{__cargo_common_opts} --release --frozen
-popd
+cargo build %{__cargo_common_opts} --release --frozen --package cli
 
 # Build Editor
-pushd crates/zed/
-cargo build %{__cargo_common_opts} --release --frozen
-popd
+cargo build %{__cargo_common_opts} --release --frozen --package zed
 
 %install
 install -Dm755 target/release/zed %{buildroot}%{_libexecdir}/zed-editor

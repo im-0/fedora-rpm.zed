@@ -1,0 +1,52 @@
+From e9ab7943878e21792f3bdb8ea06f5b1817db5988 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Thu, 25 Dec 2025 05:52:33 +0100
+Subject: [PATCH] Fix gpui build
+
+Fix following error:
+
+	error[E0599]: no function or associated item named `from_const` found for struct `SmallVec<_>` in the current scope
+	   --> crates/gpui/src/svg_renderer.rs:89:56
+		|
+	 89 |             let mut image = RenderImage::new(SmallVec::from_const([Frame::new(buffer)]));
+		|                                                        ^^^^^^^^^^ function or associated item not found in `SmallVec<_>`
+		|
+	note: if you're trying to build a new `SmallVec<_>` consider using one of the following associated functions:
+		  SmallVec::<A>::new
+		  SmallVec::<A>::with_capacity
+		  SmallVec::<A>::from_vec
+		  SmallVec::<A>::from_buf
+		  and 5 others
+	   --> /home/im/projects/patches/zed/vendor/smallvec/src/lib.rs:783:5
+		|
+	783 |     pub fn new() -> SmallVec<A> {
+		|     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+	810 |     pub fn with_capacity(n: usize) -> Self {
+		|     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+	829 |     pub fn from_vec(mut vec: Vec<A::Item>) -> SmallVec<A> {
+		|     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+	870 |     pub fn from_buf(buf: A) -> SmallVec<A> {
+		|     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---
+ Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 0ad4d2b14523..2b109d055510 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -631,7 +631,7 @@ shellexpand = "2.1.0"
+ shlex = "1.3.0"
+ simplelog = "0.12.2"
+ slotmap = "1.0.6"
+-smallvec = { version = "1.6", features = ["union"] }
++smallvec = { version = "1.6", features = ["union", "const_new"] }
+ smol = "2.0"
+ sqlformat = "0.2"
+ stacksafe = "0.1"
+-- 
+2.52.0
+
