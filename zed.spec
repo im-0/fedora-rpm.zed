@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.217.3
+Version:        0.217.4
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -107,7 +107,7 @@ export LK_CUSTOM_WEBRTC="$( pwd )/../linux-x64-release"
 export LK_CUSTOM_WEBRTC="$( pwd )/../linux-arm64-release"
 %endif
 
-export RUSTFLAGS="-Copt-level=3 -Cdebuginfo=2 -Cstrip=none -Cforce-frame-pointers=yes -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn"
+export RUSTFLAGS="-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=16 -Clink-arg=-fuse-ld=mold -Cstrip=none -Cforce-frame-pointers=yes -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn"
 
 # Build CLI
 cargo build %{__cargo_common_opts} --release --frozen --package cli
