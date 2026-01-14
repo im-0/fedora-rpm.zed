@@ -16,6 +16,11 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/kvark/blade?rev=e3cf011ca18a6dfd907d1dedd93e85e21f005fe3"]
+git = "https://github.com/kvark/blade"
+rev = "e3cf011ca18a6dfd907d1dedd93e85e21f005fe3"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"]
 git = "https://github.com/microsoft/python-environment-tools.git"
 rev = "1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"
