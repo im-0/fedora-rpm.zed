@@ -21,9 +21,14 @@ git = "https://github.com/kvark/blade"
 rev = "e3cf011ca18a6dfd907d1dedd93e85e21f005fe3"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/microsoft/python-environment-tools.git?rev=1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"]
+[source."git+https://github.com/microsoft/python-environment-tools.git?rev=d5b5bb0c4558a51d8cc76b514bc870fd1c042f16"]
 git = "https://github.com/microsoft/python-environment-tools.git"
-rev = "1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da"
+rev = "d5b5bb0c4558a51d8cc76b514bc870fd1c042f16"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/smol-rs/async-task.git?rev=b4486cd71e4e94fbda54ce6302444de14f4d190e"]
+git = "https://github.com/smol-rs/async-task.git"
+rev = "b4486cd71e4e94fbda54ce6302444de14f4d190e"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/tree-sitter-grammars/tree-sitter-markdown?rev=9a23c1a96c0513d8fc6520972beedd419a973539"]
