@@ -41,6 +41,11 @@ git = "https://github.com/tree-sitter/tree-sitter-cpp"
 rev = "5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/zed-industries/alacritty?rev=936aee8761a17affc84ab418ae21306c27c26221"]
+git = "https://github.com/zed-industries/alacritty"
+rev = "936aee8761a17affc84ab418ae21306c27c26221"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
 git = "https://github.com/zed-industries/async-pipe-rs"
 rev = "82d00a04211cf4e1236029aa03e6b6ce2a74c553"
@@ -65,9 +70,9 @@ git = "https://github.com/zed-industries/font-kit"
 rev = "110523127440aefb11ce0cf280ae7c5071337ec5"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/gh-workflow?rev=09acfdf2bd5c1d6254abefd609c808ff73547b2c"]
+[source."git+https://github.com/zed-industries/gh-workflow?rev=c9eac0ed361583e1072860d96776fa52775b82ac"]
 git = "https://github.com/zed-industries/gh-workflow"
-rev = "09acfdf2bd5c1d6254abefd609c808ff73547b2c"
+rev = "c9eac0ed361583e1072860d96776fa52775b82ac"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d"]
@@ -80,9 +85,9 @@ git = "https://github.com/zed-industries/lsp-types"
 rev = "b71ab4eeb27d9758be8092020a46fe33fbca4e33"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/notify.git?rev=b4588b2e5aee68f4c0e100f140e808cbce7b1419"]
+[source."git+https://github.com/zed-industries/notify.git?rev=6c550ac3c56cbd143c57ea6390e197af9d790908"]
 git = "https://github.com/zed-industries/notify.git"
-rev = "b4588b2e5aee68f4c0e100f140e808cbce7b1419"
+rev = "6c550ac3c56cbd143c57ea6390e197af9d790908"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
