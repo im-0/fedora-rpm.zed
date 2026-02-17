@@ -85,9 +85,9 @@ git = "https://github.com/zed-industries/lsp-types"
 rev = "b71ab4eeb27d9758be8092020a46fe33fbca4e33"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/notify.git?rev=6c550ac3c56cbd143c57ea6390e197af9d790908"]
+[source."git+https://github.com/zed-industries/notify.git?rev=ce58c24cad542c28e04ced02e20325a4ec28a31d"]
 git = "https://github.com/zed-industries/notify.git"
-rev = "6c550ac3c56cbd143c57ea6390e197af9d790908"
+rev = "ce58c24cad542c28e04ced02e20325a4ec28a31d"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
