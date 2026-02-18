@@ -41,9 +41,9 @@ git = "https://github.com/tree-sitter/tree-sitter-cpp"
 rev = "5cb9b693cfd7bfacab1d9ff4acac1a4150700609"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/alacritty?rev=936aee8761a17affc84ab418ae21306c27c26221"]
+[source."git+https://github.com/zed-industries/alacritty?rev=9d9640d4"]
 git = "https://github.com/zed-industries/alacritty"
-rev = "936aee8761a17affc84ab418ae21306c27c26221"
+rev = "9d9640d4"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/async-pipe-rs?rev=82d00a04211cf4e1236029aa03e6b6ce2a74c553"]
@@ -80,9 +80,9 @@ git = "https://github.com/zed-industries/livekit-rust-sdks"
 rev = "5f04705ac3f356350ae31534ffbc476abc9ea83d"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=b71ab4eeb27d9758be8092020a46fe33fbca4e33"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=a4f410987660bf560d1e617cb78117c6b6b9f599"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "b71ab4eeb27d9758be8092020a46fe33fbca4e33"
+rev = "a4f410987660bf560d1e617cb78117c6b6b9f599"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/notify.git?rev=ce58c24cad542c28e04ced02e20325a4ec28a31d"]
