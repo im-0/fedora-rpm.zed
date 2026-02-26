@@ -6,19 +6,14 @@ git = "https://github.com/KillTheMule/nvim-rs"
 rev = "764dd270c642f77f10f3e19d05cc178a6cbe69f3"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/RustAudio/rodio?rev=e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"]
+[source."git+https://github.com/RustAudio/rodio?rev=e50e726ddd0292f6ef9de0dda6b90af4ed1fb66a"]
 git = "https://github.com/RustAudio/rodio"
-rev = "e2074c6c2acf07b57cf717e076bdda7a9ac6e70b"
+rev = "e50e726ddd0292f6ef9de0dda6b90af4ed1fb66a"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"]
 git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
-replace-with = "vendored-sources"
-
-[source."git+https://github.com/kvark/blade?rev=e3cf011ca18a6dfd907d1dedd93e85e21f005fe3"]
-git = "https://github.com/kvark/blade"
-rev = "e3cf011ca18a6dfd907d1dedd93e85e21f005fe3"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=d5b5bb0c4558a51d8cc76b514bc870fd1c042f16"]
@@ -83,6 +78,11 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/zed-industries/lsp-types?rev=a4f410987660bf560d1e617cb78117c6b6b9f599"]
 git = "https://github.com/zed-industries/lsp-types"
 rev = "a4f410987660bf560d1e617cb78117c6b6b9f599"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/zed-industries/mermaid-rs-renderer?branch=fix-font-family-xml-escaping"]
+git = "https://github.com/zed-industries/mermaid-rs-renderer"
+branch = "fix-font-family-xml-escaping"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/notify.git?rev=ce58c24cad542c28e04ced02e20325a4ec28a31d"]
