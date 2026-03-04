@@ -130,6 +130,11 @@ git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/zed-industries/wgpu?rev=e0f83a6cedc5e0b97da1ebe2d638ad103672e0a2"]
+git = "https://github.com/zed-industries/wgpu"
+rev = "e0f83a6cedc5e0b97da1ebe2d638ad103672e0a2"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
 git = "https://github.com/zed-industries/windows-capture.git"
 rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
