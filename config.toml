@@ -140,6 +140,11 @@ git = "https://github.com/zed-industries/windows-capture.git"
 rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/zed-industries/wprcontrol?rev=cd811f7"]
+git = "https://github.com/zed-industries/wprcontrol"
+rev = "cd811f7"
+replace-with = "vendored-sources"
+
 [source."git+https://github.com/zed-industries/xim-rs.git?rev=16f35a2c881b815a2b6cdfd6687988e84f8447d8"]
 git = "https://github.com/zed-industries/xim-rs.git"
 rev = "16f35a2c881b815a2b6cdfd6687988e84f8447d8"
