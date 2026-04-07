@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.226.5
+Version:        0.230.2
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -25,8 +25,8 @@ Source3:    logo_96.svg
 Source4:    config-mold.toml
 
 # Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
-Source401:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-b99fd2c-6/webrtc-linux-x64-release.zip
-Source402:  https://github.com/livekit/client-sdk-rust/releases/download/webrtc-b99fd2c-6/webrtc-linux-arm64-release.zip
+Source401:  https://github.com/zed-industries/livekit-rust-sdks/releases/download/webrtc-0001d84-4/webrtc-linux-x64-release.zip
+Source402:  https://github.com/zed-industries/livekit-rust-sdks/releases/download/webrtc-0001d84-4/webrtc-linux-arm64-release.zip
 
 Patch0:     0001-Support-enabling-features-by-environment-variable.patch
 
