@@ -16,6 +16,11 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 replace-with = "vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 
+[source."git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5"]
+git = "https://github.com/im-0/wgpu.git"
+branch = "zed-v29-rpi5"
+replace-with = "vendor+git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5"
+
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=9e61a22af989fe54937bf07c9f9cff1bc53d9056"]
 git = "https://github.com/microsoft/python-environment-tools.git"
 rev = "9e61a22af989fe54937bf07c9f9cff1bc53d9056"
@@ -135,11 +140,6 @@ git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
 replace-with = "vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
 
-[source."git+https://github.com/zed-industries/wgpu.git?branch=v29"]
-git = "https://github.com/zed-industries/wgpu.git"
-branch = "v29"
-replace-with = "vendor+git+https://github.com/zed-industries/wgpu.git?branch=v29"
-
 [source."git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
 git = "https://github.com/zed-industries/windows-capture.git"
 rev = "f0d6c1b6691db75461b732f6d5ff56eed002eeb9"
@@ -166,6 +166,9 @@ directory = "vendor/git-53f1b5347e3fcd00"
 
 [source."vendor+git+https://github.com/camdencheek/tree-sitter-go-mod?rev=2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"]
 directory = "vendor/git-37b237cfb3dbd500"
+
+[source."vendor+git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5"]
+directory = "vendor/git-3cabe13d7fafb700"
 
 [source."vendor+git+https://github.com/microsoft/python-environment-tools.git?rev=9e61a22af989fe54937bf07c9f9cff1bc53d9056"]
 directory = "vendor/git-68f231ed354dda00"
@@ -238,9 +241,6 @@ directory = "vendor/git-e6df275f0ac83d00"
 
 [source."vendor+git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 directory = "vendor/git-b178c6aaab81ed00"
-
-[source."vendor+git+https://github.com/zed-industries/wgpu.git?branch=v29"]
-directory = "vendor/git-7f7480df5537e900"
 
 [source."vendor+git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
 directory = "vendor/git-18f277c2e40a8600"
