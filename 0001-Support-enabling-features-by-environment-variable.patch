@@ -1,4 +1,4 @@
-From cfefcc6da2484c345759062b27236138bc3d85a4 Mon Sep 17 00:00:00 2001
+From e665c266d1708a454ad4a3a72cd559a414278d7d Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH 1/2] Support enabling features by environment variable
@@ -35,7 +35,7 @@ index 5b8af1180aae..ef1977f271eb 100644
  
      fn set_staff(&mut self, staff: bool) {
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 0a55953931ff..5af7733881ac 100644
+index 303f21b8ffa6..82c53fed0167 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -17,6 +17,7 @@ use crashes::InitCrashHandler;
@@ -55,9 +55,9 @@ index 0a55953931ff..5af7733881ac 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -817,6 +818,26 @@ fn main() {
+@@ -820,6 +821,26 @@ fn main() {
          cx.set_menus(menus);
-         initialize_workspace(app_state.clone(), prompt_builder, cx);
+         initialize_workspace(app_state.clone(), cx);
  
 +        let feature_flags = env::var("ZED_ENABLE_EXPERIMENTAL_FEATURES")
 +            .and_then(|s| {

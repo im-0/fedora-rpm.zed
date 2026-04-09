@@ -1,17 +1,175 @@
-From f73f6f0ef6d78548ea4ceba3aba8ac2182b91c26 Mon Sep 17 00:00:00 2001
+From bc4271f933cfc35ed10365747bcf71597ffd9fdf Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Wed, 8 Apr 2026 03:36:41 +0200
 Subject: [PATCH 2/2] Fix Zed on Raspberry Pi 5
 
 ---
- Cargo.toml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Cargo.lock | 53 ++++++++++++++---------------------------------------
+ Cargo.toml |  4 ++--
+ 2 files changed, 16 insertions(+), 41 deletions(-)
 
+diff --git a/Cargo.lock b/Cargo.lock
+index 4c23ce2cfb32..3dac8f328655 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -7480,7 +7480,7 @@ dependencies = [
+  "mach2 0.5.0",
+  "media",
+  "metal",
+- "naga 29.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
++ "naga",
+  "num_cpus",
+  "objc",
+  "objc2",
+@@ -10654,32 +10654,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
+ [[package]]
+ name = "naga"
+ version = "29.0.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "85b4372fed0bd362d646d01b6926df0e837859ccc522fed720c395e0460f29c8"
+-dependencies = [
+- "arrayvec",
+- "bit-set 0.9.1",
+- "bitflags 2.10.0",
+- "cfg-if",
+- "cfg_aliases 0.2.1",
+- "codespan-reporting",
+- "half",
+- "hashbrown 0.16.1",
+- "hexf-parse",
+- "indexmap",
+- "libm",
+- "log",
+- "num-traits",
+- "once_cell",
+- "rustc-hash 1.1.0",
+- "thiserror 2.0.17",
+- "unicode-ident",
+-]
+-
+-[[package]]
+-name = "naga"
+-version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "arrayvec",
+  "bit-set 0.9.1",
+@@ -20062,7 +20037,7 @@ checksum = "a751b3277700db47d3e574514de2eced5e54dc8a5436a3bf7a0b248b2cee16f3"
+ [[package]]
+ name = "wgpu"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "arrayvec",
+  "bitflags 2.10.0",
+@@ -20073,7 +20048,7 @@ dependencies = [
+  "hashbrown 0.16.1",
+  "js-sys",
+  "log",
+- "naga 29.0.0 (git+https://github.com/zed-industries/wgpu.git?branch=v29)",
++ "naga",
+  "parking_lot",
+  "portable-atomic",
+  "profiling",
+@@ -20091,7 +20066,7 @@ dependencies = [
+ [[package]]
+ name = "wgpu-core"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "arrayvec",
+  "bit-set 0.9.1",
+@@ -20103,7 +20078,7 @@ dependencies = [
+  "hashbrown 0.16.1",
+  "indexmap",
+  "log",
+- "naga 29.0.0 (git+https://github.com/zed-industries/wgpu.git?branch=v29)",
++ "naga",
+  "once_cell",
+  "parking_lot",
+  "portable-atomic",
+@@ -20123,7 +20098,7 @@ dependencies = [
+ [[package]]
+ name = "wgpu-core-deps-apple"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "wgpu-hal",
+ ]
+@@ -20131,7 +20106,7 @@ dependencies = [
+ [[package]]
+ name = "wgpu-core-deps-emscripten"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "wgpu-hal",
+ ]
+@@ -20139,7 +20114,7 @@ dependencies = [
+ [[package]]
+ name = "wgpu-core-deps-windows-linux-android"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "wgpu-hal",
+ ]
+@@ -20147,7 +20122,7 @@ dependencies = [
+ [[package]]
+ name = "wgpu-hal"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "android_system_properties",
+  "arrayvec",
+@@ -20168,7 +20143,7 @@ dependencies = [
+  "libc",
+  "libloading",
+  "log",
+- "naga 29.0.0 (git+https://github.com/zed-industries/wgpu.git?branch=v29)",
++ "naga",
+  "ndk-sys",
+  "objc2",
+  "objc2-core-foundation",
+@@ -20199,16 +20174,16 @@ dependencies = [
+ [[package]]
+ name = "wgpu-naga-bridge"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+- "naga 29.0.0 (git+https://github.com/zed-industries/wgpu.git?branch=v29)",
++ "naga",
+  "wgpu-types",
+ ]
+ 
+ [[package]]
+ name = "wgpu-types"
+ version = "29.0.0"
+-source = "git+https://github.com/zed-industries/wgpu.git?branch=v29#a466bc382ea747f8e1ac810efdb6dcd49a514575"
++source = "git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5#a36343e5209ac236373f4c864c01401d3d8de751"
+ dependencies = [
+  "bitflags 2.10.0",
+  "bytemuck",
 diff --git a/Cargo.toml b/Cargo.toml
-index 17efe2180096..ef8c30f29cda 100644
+index 3a393237ab9f..4254bd4a4b9c 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -782,7 +782,7 @@ which = "6.0.0"
+@@ -598,7 +598,7 @@ markup5ever_rcdom = "0.3.0"
+ metal = "0.33"
+ minidumper = "0.9"
+ moka = { version = "0.12.10", features = ["sync"] }
+-naga = { version = "29.0", features = ["wgsl-in"] }
++naga = { git = "https://github.com/im-0/wgpu.git", branch = "zed-v29-rpi5", version = "29.0", features = ["wgsl-in"] }
+ nanoid = "0.4"
+ nbformat = "1.2.0"
+ nix = "0.29"
+@@ -783,7 +783,7 @@ which = "6.0.0"
  wasm-bindgen = "0.2.113"
  web-time = "1.1.0"
  webrtc-sys = "0.3.23"
