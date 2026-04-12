@@ -1,0 +1,101 @@
+From dd1dc17c9b1f9086858d57ab33711c594d9a1204 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Sun, 12 Apr 2026 01:19:31 +0200
+Subject: [PATCH] Fix devcontainer's localEnv expansion when local variable is
+ undefined
+
+---
+ .../src/devcontainer_manifest.rs              | 54 ++++++++++++++++---
+ 1 file changed, 48 insertions(+), 6 deletions(-)
+
+diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
+index 0ab80a9d2ad9..460451cc50bc 100644
+--- a/crates/dev_container/src/devcontainer_manifest.rs
++++ b/crates/dev_container/src/devcontainer_manifest.rs
+@@ -133,7 +133,7 @@ impl DevContainerManifest {
+     }
+ 
+     fn parse_nonremote_vars_for_content(&self, content: &str) -> Result<String, DevContainerError> {
+-        let mut replaced_content = content
++        let replaced_content = content
+             .replace("${devcontainerId}", &self.devcontainer_id())
+             .replace(
+                 "${containerWorkspaceFolderBasename}",
+@@ -155,12 +155,46 @@ impl DevContainerManifest {
+                 "${localWorkspaceFolder}",
+                 &self.local_workspace_folder().replace('\\', "/"),
+             );
+-        for (k, v) in &self.local_environment {
+-            let find = format!("${{localEnv:{k}}}");
+-            replaced_content = replaced_content.replace(&find, &v.replace('\\', "/"));
++
++        let mut with_local_env = String::with_capacity(replaced_content.len());
++        let mut remaining = replaced_content.as_str();
++        let local_env_prefix = "${localEnv:";
++        while let Some(start) = remaining.find(local_env_prefix) {
++            let var_name_start = start + local_env_prefix.len();
++            let Some(end) = remaining[var_name_start..].find('}') else {
++                break;
++            };
++            let end = var_name_start + end;
++
++            let (var_name_end, default_start) =
++                if let Some(var_name_end) = remaining[var_name_start..end].find(':') {
++                    let var_name_end = var_name_start + var_name_end;
++                    (var_name_end, var_name_end + 1)
++                } else {
++                    (end, end)
++                };
++
++            let var_name = &remaining[var_name_start..var_name_end];
++            if var_name.is_empty() {
++                with_local_env.push_str(&remaining[..end + 1]);
++                remaining = &remaining[end + 1..];
++                continue;
++            }
++            let default = &remaining[default_start..end];
++
++            with_local_env.push_str(&remaining[..start]);
++            with_local_env.push_str(
++                &self
++                    .local_environment
++                    .get(var_name)
++                    .map(|value| value.replace('\\', "/"))
++                    .unwrap_or_else(|| default.to_owned()),
++            );
++            remaining = &remaining[end + 1..];
+         }
++        with_local_env.push_str(remaining);
+ 
+-        Ok(replaced_content)
++        Ok(with_local_env)
+     }
+ 
+     fn parse_nonremote_vars(&mut self) -> Result<(), DevContainerError> {
+@@ -2800,7 +2834,8 @@ mod test {
+         "REMOTE_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+         "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+         "LOCAL_ENV_VAR_1": "${localEnv:local_env_1}",
+-        "LOCAL_ENV_VAR_2": "${localEnv:my_other_env}"
++        "LOCAL_ENV_VAR_2": "${localEnv:my_other_env}",
++        "LOCAL_ENV_VAR_3": "before-${localEnv:missing_local_env}-after"
+ 
+     }
+ }
+@@ -2893,6 +2928,13 @@ mod test {
+                 .and_then(|env| env.get("LOCAL_ENV_VAR_2")),
+             Some(&"THISVALUEHERE".to_string())
+         );
++        assert_eq!(
++            variable_replaced_devcontainer
++                .remote_env
++                .as_ref()
++                .and_then(|env| env.get("LOCAL_ENV_VAR_3")),
++            Some(&"before--after".to_string())
++        );
+     }
+ 
+     #[gpui::test]
+-- 
+2.53.0
+
