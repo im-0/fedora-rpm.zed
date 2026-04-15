@@ -1,4 +1,4 @@
-From f6d9e0b1fe3f7953703b5da4715f8c2648776579 Mon Sep 17 00:00:00 2001
+From 745e8069aae006da40f168d07f8c4da515bb614a Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sun, 12 Apr 2026 01:19:31 +0200
 Subject: [PATCH] Fix devcontainer localEnv/containerEnv substitution when var
@@ -44,10 +44,10 @@ reasoning behind this code.
  1 file changed, 91 insertions(+), 11 deletions(-)
 
 diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
-index 0ab80a9d2ad9..5ca97c11d1cd 100644
+index 29dc0f9fe96d..33eb5799b5e0 100644
 --- a/crates/dev_container/src/devcontainer_manifest.rs
 +++ b/crates/dev_container/src/devcontainer_manifest.rs
-@@ -133,7 +133,7 @@ impl DevContainerManifest {
+@@ -131,7 +131,7 @@ impl DevContainerManifest {
      }
  
      fn parse_nonremote_vars_for_content(&self, content: &str) -> Result<String, DevContainerError> {
@@ -56,7 +56,7 @@ index 0ab80a9d2ad9..5ca97c11d1cd 100644
              .replace("${devcontainerId}", &self.devcontainer_id())
              .replace(
                  "${containerWorkspaceFolderBasename}",
-@@ -155,11 +155,11 @@ impl DevContainerManifest {
+@@ -153,11 +153,11 @@ impl DevContainerManifest {
                  "${localWorkspaceFolder}",
                  &self.local_workspace_folder().replace('\\', "/"),
              );
@@ -73,7 +73,7 @@ index 0ab80a9d2ad9..5ca97c11d1cd 100644
          Ok(replaced_content)
      }
  
-@@ -180,16 +180,14 @@ impl DevContainerManifest {
+@@ -178,16 +178,14 @@ impl DevContainerManifest {
          // HOME is user-specific, and we will often not run as the image user
          merged_remote_env.remove("HOME");
          if let Some(remote_env) = self.dev_container().remote_env.clone() {
@@ -92,7 +92,7 @@ index 0ab80a9d2ad9..5ca97c11d1cd 100644
              let reserialized: HashMap<String, String> = serde_json_lenient::from_str(&raw)
                  .map_err(|e| {
                      log::error!(
-@@ -205,6 +203,50 @@ impl DevContainerManifest {
+@@ -203,6 +201,50 @@ impl DevContainerManifest {
          Ok(merged_remote_env)
      }
  
@@ -143,7 +143,7 @@ index 0ab80a9d2ad9..5ca97c11d1cd 100644
      fn config_file(&self) -> PathBuf {
          self.config_directory.join(&self.file_name)
      }
-@@ -2800,7 +2842,9 @@ mod test {
+@@ -2754,7 +2796,9 @@ mod test {
          "REMOTE_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
          "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
          "LOCAL_ENV_VAR_1": "${localEnv:local_env_1}",
@@ -154,7 +154,7 @@ index 0ab80a9d2ad9..5ca97c11d1cd 100644
  
      }
  }
-@@ -2893,6 +2937,42 @@ mod test {
+@@ -2847,6 +2891,42 @@ mod test {
                  .and_then(|env| env.get("LOCAL_ENV_VAR_2")),
              Some(&"THISVALUEHERE".to_string())
          );
