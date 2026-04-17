@@ -1,0 +1,200 @@
+From f51c825b140cd563a32cc04ac1ffda40b17e1795 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Fri, 17 Apr 2026 11:05:34 +0200
+Subject: [PATCH 2/2] Prevent JSON breakage when replacing env references in
+ devcontainer.json
+
+---
+ crates/dev_container/src/devcontainer_json.rs |  22 +++-
+ .../src/devcontainer_manifest.rs              | 109 ++++++++++--------
+ 2 files changed, 79 insertions(+), 52 deletions(-)
+
+diff --git a/crates/dev_container/src/devcontainer_json.rs b/crates/dev_container/src/devcontainer_json.rs
+index 34ee99ed3834..a1a0447e4e21 100644
+--- a/crates/dev_container/src/devcontainer_json.rs
++++ b/crates/dev_container/src/devcontainer_json.rs
+@@ -237,16 +237,34 @@ pub(crate) struct DevContainer {
+     host_requirements: Option<HostRequirements>,
+ }
+ 
+-pub(crate) fn deserialize_devcontainer_json(json: &str) -> Result<DevContainer, DevContainerError> {
++pub(crate) fn deserialize_devcontainer_json_to_value(
++    json: &str,
++) -> Result<serde_json_lenient::Value, DevContainerError> {
+     match serde_json_lenient::from_str(json) {
+         Ok(devcontainer) => Ok(devcontainer),
+         Err(e) => {
+-            log::error!("Unable to deserialize devcontainer from json: {e}");
++            log::error!("Unable to deserialize json values: {e}");
+             Err(DevContainerError::DevContainerParseFailed)
+         }
+     }
+ }
+ 
++pub(crate) fn deserialize_devcontainer_json_from_value(
++    json: serde_json_lenient::Value,
++) -> Result<DevContainer, DevContainerError> {
++    match serde_json_lenient::from_value(json) {
++        Ok(devcontainer) => Ok(devcontainer),
++        Err(e) => {
++            log::error!("Unable to deserialize devcontainer from json values: {e}");
++            Err(DevContainerError::DevContainerParseFailed)
++        }
++    }
++}
++
++pub(crate) fn deserialize_devcontainer_json(json: &str) -> Result<DevContainer, DevContainerError> {
++    deserialize_devcontainer_json_to_value(json).and_then(deserialize_devcontainer_json_from_value)
++}
++
+ impl DevContainer {
+     pub(crate) fn build_type(&self) -> DevContainerBuildType {
+         if self.image.is_some() {
+diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
+index 33eb5799b5e0..9305f11dc89a 100644
+--- a/crates/dev_container/src/devcontainer_manifest.rs
++++ b/crates/dev_container/src/devcontainer_manifest.rs
+@@ -16,7 +16,8 @@ use crate::{
+     devcontainer_api::{DevContainerError, DevContainerUp},
+     devcontainer_json::{
+         DevContainer, DevContainerBuildType, FeatureOptions, ForwardPort, MountDefinition,
+-        deserialize_devcontainer_json,
++        deserialize_devcontainer_json, deserialize_devcontainer_json_from_value,
++        deserialize_devcontainer_json_to_value,
+     },
+     docker::{
+         Docker, DockerClient, DockerComposeConfig, DockerComposeService, DockerComposeServiceBuild,
+@@ -130,40 +131,60 @@ impl DevContainerManifest {
+         labels
+     }
+ 
+-    fn parse_nonremote_vars_for_content(&self, content: &str) -> Result<String, DevContainerError> {
+-        let replaced_content = content
+-            .replace("${devcontainerId}", &self.devcontainer_id())
+-            .replace(
+-                "${containerWorkspaceFolderBasename}",
+-                &self.remote_workspace_base_name().unwrap_or_default(),
+-            )
+-            .replace(
+-                "${localWorkspaceFolderBasename}",
+-                &self.local_workspace_base_name()?,
+-            )
+-            .replace(
+-                "${containerWorkspaceFolder}",
+-                &self
+-                    .remote_workspace_folder()
+-                    .map(|path| path.display().to_string())
+-                    .unwrap_or_default()
+-                    .replace('\\', "/"),
+-            )
+-            .replace(
+-                "${localWorkspaceFolder}",
+-                &self.local_workspace_folder().replace('\\', "/"),
+-            );
+-        let replaced_content = Self::replace_environment_variables(
+-            &replaced_content,
+-            "${localEnv:",
+-            &self.local_environment,
+-        );
+-        Ok(replaced_content)
++    fn parse_nonremote_vars_for_content(
++        &self,
++        content: &str,
++    ) -> Result<serde_json_lenient::Value, DevContainerError> {
++        let mut value = deserialize_devcontainer_json_to_value(content)?;
++        let mut to_visit = vec![&mut value];
++
++        while let Some(value) = to_visit.pop() {
++            use serde_json_lenient::Value;
++
++            match value {
++                Value::String(string) => {
++                    *string = string
++                        .replace("${devcontainerId}", &self.devcontainer_id())
++                        .replace(
++                            "${containerWorkspaceFolderBasename}",
++                            &self.remote_workspace_base_name().unwrap_or_default(),
++                        )
++                        .replace(
++                            "${localWorkspaceFolderBasename}",
++                            &self.local_workspace_base_name()?,
++                        )
++                        .replace(
++                            "${containerWorkspaceFolder}",
++                            &self
++                                .remote_workspace_folder()
++                                .map(|path| path.display().to_string())
++                                .unwrap_or_default()
++                                .replace('\\', "/"),
++                        )
++                        .replace(
++                            "${localWorkspaceFolder}",
++                            &self.local_workspace_folder().replace('\\', "/"),
++                        );
++                    *string = Self::replace_environment_variables(
++                        string,
++                        "${localEnv:",
++                        &self.local_environment,
++                    );
++                }
++
++                Value::Array(array) => to_visit.extend(array.iter_mut()),
++                Value::Object(object) => to_visit.extend(object.values_mut()),
++
++                Value::Null | Value::Bool(_) | Value::Number(_) => {}
++            }
++        }
++
++        Ok(value)
+     }
+ 
+     fn parse_nonremote_vars(&mut self) -> Result<(), DevContainerError> {
+         let replaced_content = self.parse_nonremote_vars_for_content(&self.raw_config)?;
+-        let parsed_config = deserialize_devcontainer_json(&replaced_content)?;
++        let parsed_config = deserialize_devcontainer_json_from_value(replaced_content)?;
+ 
+         self.config = ConfigStatus::VariableParsed(parsed_config);
+ 
+@@ -177,24 +198,12 @@ impl DevContainerManifest {
+         let mut merged_remote_env = container_env.clone();
+         // HOME is user-specific, and we will often not run as the image user
+         merged_remote_env.remove("HOME");
+-        if let Some(remote_env) = self.dev_container().remote_env.clone() {
+-            let raw = serde_json_lenient::to_string(&remote_env).map_err(|e| {
+-                log::error!(
+-                    "Unexpected error serializing dev container remote_env: {e} - {:?}",
+-                    remote_env
+-                );
+-                DevContainerError::DevContainerParseFailed
+-            })?;
+-            let raw = Self::replace_environment_variables(&raw, "${containerEnv:", &container_env);
+-            let reserialized: HashMap<String, String> = serde_json_lenient::from_str(&raw)
+-                .map_err(|e| {
+-                    log::error!(
+-                        "Unexpected error reserializing dev container remote env: {e} - {:?}",
+-                        &raw
+-                    );
+-                    DevContainerError::DevContainerParseFailed
+-                })?;
+-            for (k, v) in reserialized {
++        if let Some(mut remote_env) = self.dev_container().remote_env.clone() {
++            remote_env.values_mut().for_each(|value| {
++                *value =
++                    Self::replace_environment_variables(value, "${containerEnv:", &container_env)
++            });
++            for (k, v) in remote_env {
+                 merged_remote_env.insert(k, v);
+             }
+         }
+@@ -514,7 +523,7 @@ impl DevContainerManifest {
+             let contents_parsed = self.parse_nonremote_vars_for_content(&contents)?;
+ 
+             let feature_json: DevContainerFeatureJson =
+-                serde_json_lenient::from_str(&contents_parsed).map_err(|e| {
++                serde_json_lenient::from_value(contents_parsed).map_err(|e| {
+                     log::error!("Failed to parse devcontainer-feature.json: {e}");
+                     DevContainerError::ResourceFetchFailed
+                 })?;
+-- 
+2.53.0
+
