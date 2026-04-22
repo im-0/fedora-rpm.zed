@@ -1,4 +1,4 @@
-From de080b1fee9db26a8408eb8fbceffeea13343dbc Mon Sep 17 00:00:00 2001
+From e2066e52f4c0a8fd7635dd73e995adc9e34202c4 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sun, 12 Apr 2026 01:19:31 +0200
 Subject: [PATCH 1/2] Fix devcontainer localEnv/containerEnv substitution when
@@ -32,15 +32,17 @@ This patch also removes replacement of `\` with `/` for environment variables.
 Existing code makes no sense as simple replacement will not magically
 make Windows paths valid on *nix. It is also guaranteed to break things:
 think about passing passwords via env vars, for example.
+
+...
 ---
- .../src/devcontainer_manifest.rs              | 102 ++++++++++++++++--
- 1 file changed, 91 insertions(+), 11 deletions(-)
+ .../src/devcontainer_manifest.rs              | 103 ++++++++++++++++--
+ 1 file changed, 92 insertions(+), 11 deletions(-)
 
 diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
-index 29dc0f9fe96d..33eb5799b5e0 100644
+index 0ab80a9d2ad9..abdfb23f9c98 100644
 --- a/crates/dev_container/src/devcontainer_manifest.rs
 +++ b/crates/dev_container/src/devcontainer_manifest.rs
-@@ -131,7 +131,7 @@ impl DevContainerManifest {
+@@ -133,7 +133,7 @@ impl DevContainerManifest {
      }
  
      fn parse_nonremote_vars_for_content(&self, content: &str) -> Result<String, DevContainerError> {
@@ -49,7 +51,7 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
              .replace("${devcontainerId}", &self.devcontainer_id())
              .replace(
                  "${containerWorkspaceFolderBasename}",
-@@ -153,11 +153,11 @@ impl DevContainerManifest {
+@@ -155,11 +155,11 @@ impl DevContainerManifest {
                  "${localWorkspaceFolder}",
                  &self.local_workspace_folder().replace('\\', "/"),
              );
@@ -60,13 +62,13 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
 -
 +        let replaced_content = Self::replace_environment_variables(
 +            &replaced_content,
-+            "${localEnv:",
++            "localEnv",
 +            &self.local_environment,
 +        );
          Ok(replaced_content)
      }
  
-@@ -178,16 +178,14 @@ impl DevContainerManifest {
+@@ -180,16 +180,14 @@ impl DevContainerManifest {
          // HOME is user-specific, and we will often not run as the image user
          merged_remote_env.remove("HOME");
          if let Some(remote_env) = self.dev_container().remote_env.clone() {
@@ -81,21 +83,22 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
 -            for (k, v) in container_env {
 -                raw = raw.replace(&format!("${{containerEnv:{k}}}"), v);
 -            }
-+            let raw = Self::replace_environment_variables(&raw, "${containerEnv:", &container_env);
++            let raw = Self::replace_environment_variables(&raw, "containerEnv", &container_env);
              let reserialized: HashMap<String, String> = serde_json_lenient::from_str(&raw)
                  .map_err(|e| {
                      log::error!(
-@@ -203,6 +201,50 @@ impl DevContainerManifest {
+@@ -205,6 +203,51 @@ impl DevContainerManifest {
          Ok(merged_remote_env)
      }
  
 +    fn replace_environment_variables(
 +        mut orig: &str,
-+        prefix: &str,
++        environment_source: &str,
 +        environment: &HashMap<String, String>,
 +    ) -> String {
 +        let mut replaced = String::with_capacity(orig.len());
-+        while let Some(start) = orig.find(prefix) {
++        let prefix = format!("${{{environment_source}:");
++        while let Some(start) = orig.find(&prefix) {
 +            let var_name_start = start + prefix.len();
 +            let Some(end) = orig[var_name_start..].find('}') else {
 +                // No closing `}` => malformed variable reference => paste as is.
@@ -136,7 +139,7 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
      fn config_file(&self) -> PathBuf {
          self.config_directory.join(&self.file_name)
      }
-@@ -2754,7 +2796,9 @@ mod test {
+@@ -2800,7 +2843,9 @@ mod test {
          "REMOTE_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
          "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
          "LOCAL_ENV_VAR_1": "${localEnv:local_env_1}",
@@ -147,7 +150,7 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
  
      }
  }
-@@ -2847,6 +2891,42 @@ mod test {
+@@ -2893,6 +2938,42 @@ mod test {
                  .and_then(|env| env.get("LOCAL_ENV_VAR_2")),
              Some(&"THISVALUEHERE".to_string())
          );
@@ -171,7 +174,7 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
 +    fn test_replace_environment_variables() {
 +        let replaced = DevContainerManifest::replace_environment_variables(
 +            "before ${containerEnv:FOUND} middle ${containerEnv:MISSING:default-value} after${containerEnv:MISSING2}",
-+            "${containerEnv:",
++            "containerEnv",
 +            &HashMap::from([("FOUND".to_string(), "value".to_string())]),
 +        );
 +
@@ -182,7 +185,7 @@ index 29dc0f9fe96d..33eb5799b5e0 100644
 +    fn test_replace_environment_variables_supports_defaults_with_colons() {
 +        let replaced = DevContainerManifest::replace_environment_variables(
 +            "before ${containerEnv:MISSING:one:two} after",
-+            "${containerEnv:",
++            "containerEnv",
 +            &HashMap::new(),
 +        );
 +

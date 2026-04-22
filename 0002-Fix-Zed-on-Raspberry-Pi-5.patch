@@ -1,4 +1,4 @@
-From 195cac4e59428278c14b679c84c7b8812a6a3007 Mon Sep 17 00:00:00 2001
+From 4bcdaa16c39090c872df14dc8c723d6e4ebe190c Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Wed, 8 Apr 2026 03:36:41 +0200
 Subject: [PATCH 2/2] Fix Zed on Raspberry Pi 5
@@ -9,10 +9,10 @@ Subject: [PATCH 2/2] Fix Zed on Raspberry Pi 5
  2 files changed, 16 insertions(+), 41 deletions(-)
 
 diff --git a/Cargo.lock b/Cargo.lock
-index e9e002c5c8ce..401ed0ba9c39 100644
+index 74ba4f06efa1..1e72d2c79552 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -7567,7 +7567,7 @@ dependencies = [
+@@ -7557,7 +7557,7 @@ dependencies = [
   "mach2 0.5.0",
   "media",
   "metal",
@@ -21,7 +21,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
   "num_cpus",
   "objc",
   "objc2",
-@@ -10795,32 +10795,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
+@@ -10787,32 +10787,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
  [[package]]
  name = "naga"
  version = "29.0.0"
@@ -55,7 +55,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "arrayvec",
   "bit-set 0.9.1",
-@@ -20323,7 +20298,7 @@ checksum = "a751b3277700db47d3e574514de2eced5e54dc8a5436a3bf7a0b248b2cee16f3"
+@@ -20276,7 +20251,7 @@ checksum = "a751b3277700db47d3e574514de2eced5e54dc8a5436a3bf7a0b248b2cee16f3"
  [[package]]
  name = "wgpu"
  version = "29.0.0"
@@ -64,7 +64,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "arrayvec",
   "bitflags 2.10.0",
-@@ -20334,7 +20309,7 @@ dependencies = [
+@@ -20287,7 +20262,7 @@ dependencies = [
   "hashbrown 0.16.1",
   "js-sys",
   "log",
@@ -73,7 +73,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
   "parking_lot",
   "portable-atomic",
   "profiling",
-@@ -20352,7 +20327,7 @@ dependencies = [
+@@ -20305,7 +20280,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core"
  version = "29.0.0"
@@ -82,7 +82,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "arrayvec",
   "bit-set 0.9.1",
-@@ -20364,7 +20339,7 @@ dependencies = [
+@@ -20317,7 +20292,7 @@ dependencies = [
   "hashbrown 0.16.1",
   "indexmap",
   "log",
@@ -91,7 +91,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
   "once_cell",
   "parking_lot",
   "portable-atomic",
-@@ -20384,7 +20359,7 @@ dependencies = [
+@@ -20337,7 +20312,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-apple"
  version = "29.0.0"
@@ -100,7 +100,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20392,7 +20367,7 @@ dependencies = [
+@@ -20345,7 +20320,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-emscripten"
  version = "29.0.0"
@@ -109,7 +109,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20400,7 +20375,7 @@ dependencies = [
+@@ -20353,7 +20328,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-windows-linux-android"
  version = "29.0.0"
@@ -118,7 +118,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20408,7 +20383,7 @@ dependencies = [
+@@ -20361,7 +20336,7 @@ dependencies = [
  [[package]]
  name = "wgpu-hal"
  version = "29.0.0"
@@ -127,7 +127,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
  dependencies = [
   "android_system_properties",
   "arrayvec",
-@@ -20429,7 +20404,7 @@ dependencies = [
+@@ -20382,7 +20357,7 @@ dependencies = [
   "libc",
   "libloading",
   "log",
@@ -136,7 +136,7 @@ index e9e002c5c8ce..401ed0ba9c39 100644
   "ndk-sys",
   "objc2",
   "objc2-core-foundation",
-@@ -20460,16 +20435,16 @@ dependencies = [
+@@ -20413,16 +20388,16 @@ dependencies = [
  [[package]]
  name = "wgpu-naga-bridge"
  version = "29.0.0"
@@ -157,10 +157,10 @@ index e9e002c5c8ce..401ed0ba9c39 100644
   "bitflags 2.10.0",
   "bytemuck",
 diff --git a/Cargo.toml b/Cargo.toml
-index e4b8eecbbc4b..f1c2025eae94 100644
+index 73487fc162c0..696630834076 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -615,7 +615,7 @@ markup5ever_rcdom = "0.3.0"
+@@ -616,7 +616,7 @@ markup5ever_rcdom = "0.3.0"
  metal = "0.33"
  minidumper = "0.9"
  moka = { version = "0.12.10", features = ["sync"] }
@@ -169,7 +169,7 @@ index e4b8eecbbc4b..f1c2025eae94 100644
  nanoid = "0.4"
  nbformat = "1.2.0"
  nix = "0.29"
-@@ -801,7 +801,7 @@ which = "6.0.0"
+@@ -802,7 +802,7 @@ which = "6.0.0"
  wasm-bindgen = "0.2.113"
  web-time = "1.1.0"
  webrtc-sys = "0.3.23"

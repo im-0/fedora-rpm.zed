@@ -1,4 +1,4 @@
-From c4807fbc126610805671f01959364a0651bc4b72 Mon Sep 17 00:00:00 2001
+From 8fac9ba93cff53b932676087525a815cc7d39abe Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH 1/2] Support enabling features by environment variable
@@ -15,27 +15,24 @@ allowed to access.
 
 This patch also removes the ability to disable features at runtime.
 ---
- crates/feature_flags/src/feature_flags.rs |  4 +++-
- crates/zed/src/main.rs                    | 23 ++++++++++++++++++++++-
- 2 files changed, 25 insertions(+), 2 deletions(-)
+ crates/feature_flags/src/store.rs |  1 -
+ crates/zed/src/main.rs            | 23 ++++++++++++++++++++++-
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/crates/feature_flags/src/feature_flags.rs b/crates/feature_flags/src/feature_flags.rs
-index 5b8af1180aae..ef1977f271eb 100644
---- a/crates/feature_flags/src/feature_flags.rs
-+++ b/crates/feature_flags/src/feature_flags.rs
-@@ -136,7 +136,9 @@ impl FeatureFlagAppExt for App {
-     fn update_flags(&mut self, staff: bool, flags: Vec<String>) {
-         let feature_flags = self.default_global::<FeatureFlags>();
-         feature_flags.staff = staff;
--        feature_flags.flags = flags;
-+        feature_flags.flags.extend(flags);
-+        feature_flags.flags.sort();
-+        feature_flags.flags.dedup();
-     }
- 
-     fn set_staff(&mut self, staff: bool) {
+diff --git a/crates/feature_flags/src/store.rs b/crates/feature_flags/src/store.rs
+index a8376de7e3a8..ebb79bd69464 100644
+--- a/crates/feature_flags/src/store.rs
++++ b/crates/feature_flags/src/store.rs
+@@ -107,7 +107,6 @@ impl FeatureFlagStore {
+     pub fn update_server_flags(&mut self, staff: bool, flags: Vec<String>) {
+         self.staff = staff;
+         self.server_flags_received = true;
+-        self.server_flags.clear();
+         for flag in flags {
+             self.server_flags.insert(flag.clone(), flag);
+         }
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 342ff9487f46..21ba6990b71f 100644
+index 15c426b3b0db..ab75ea7b5fe4 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -17,6 +17,7 @@ use crashes::InitCrashHandler;
@@ -46,7 +43,7 @@ index 342ff9487f46..21ba6990b71f 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -43,7 +44,7 @@ use session::{AppSession, Session};
+@@ -45,7 +46,7 @@ use session::{AppSession, Session};
  use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use std::{
      cell::RefCell,
@@ -55,7 +52,7 @@ index 342ff9487f46..21ba6990b71f 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -808,6 +809,26 @@ fn main() {
+@@ -811,6 +812,26 @@ fn main() {
          cx.set_menus(menus);
          initialize_workspace(app_state.clone(), cx);
  

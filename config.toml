@@ -70,9 +70,9 @@ git = "https://github.com/zed-industries/dap-types"
 rev = "1b461b310481d01e02b2603c16d7144b926339f8"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/font-kit?rev=110523127440aefb11ce0cf280ae7c5071337ec5"]
+[source."git+https://github.com/zed-industries/font-kit?rev=94b0f28166665e8fd2f53ff6d268a14955c82269"]
 git = "https://github.com/zed-industries/font-kit"
-rev = "110523127440aefb11ce0cf280ae7c5071337ec5"
+rev = "94b0f28166665e8fd2f53ff6d268a14955c82269"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/gh-workflow?rev=37f3c0575d379c218a9c455ee67585184e40d43f"]
@@ -85,9 +85,9 @@ git = "https://github.com/zed-industries/livekit-rust-sdks"
 rev = "147fbca3d4b592d96d33f5e6a84b59fc0b5d9bf1"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/lsp-types?rev=c7396459fefc7886b4adfa3b596832405ae1e880"]
+[source."git+https://github.com/zed-industries/lsp-types?rev=f4dfa89a21ca35cd929b70354b1583fabae325f8"]
 git = "https://github.com/zed-industries/lsp-types"
-rev = "c7396459fefc7886b4adfa3b596832405ae1e880"
+rev = "f4dfa89a21ca35cd929b70354b1583fabae325f8"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/mermaid-rs-renderer?rev=374db9ead5426697c6c2111151d9f246899bc638"]
@@ -113,6 +113,11 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/zed-industries/tiktoken-rs?rev=2570c4387a8505fb8f1d3f3557454b474f1e8271"]
 git = "https://github.com/zed-industries/tiktoken-rs"
 rev = "2570c4387a8505fb8f1d3f3557454b474f1e8271"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/zed-industries/trash-rs?rev=3bf27effd4eb8699f2e484d3326b852fe3e53af7"]
+git = "https://github.com/zed-industries/trash-rs"
+rev = "3bf27effd4eb8699f2e484d3326b852fe3e53af7"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/tree-sitter-git-commit?rev=88309716a69dd13ab83443721ba6e0b491d37ee9"]
