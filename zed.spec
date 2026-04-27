@@ -6,7 +6,7 @@
 
 
 Name:           zed
-Version:        0.233.10
+Version:        1.0.0
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
@@ -21,7 +21,6 @@ Source0:        https://github.com/zed-industries/zed/archive/v%{version}/%{name
 #     $ tar vcJf zed-X.Y.Z.cargo-vendor.tar.xz zed-X.Y.Z
 Source1:    %{name}-%{version}.cargo-vendor.tar.xz
 Source2:    config.toml
-Source3:    logo_96.svg
 Source4:    config-mold.toml
 
 # Version strings are hardcoded in ./vendor/webrtc-sys-build/src/lib.rs
@@ -30,8 +29,6 @@ Source402:  https://github.com/zed-industries/livekit-rust-sdks/releases/downloa
 
 Patch0:     0001-Support-enabling-features-by-environment-variable.patch
 Patch1:     0002-Fix-Zed-on-Raspberry-Pi-5.patch
-Patch3:     0001-Fix-devcontainer-localEnv-containerEnv-substitution-.patch
-Patch4:     0002-Prevent-JSON-breakage-when-replacing-env-references-.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
@@ -68,8 +65,6 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P3 -p1
-%patch -P4 -p1
 
 cat %{SOURCE2} >>.cargo/config.toml
 cat %{SOURCE4} >>.cargo/config.toml
@@ -130,7 +125,7 @@ desktop-file-install                                    \
 
 #install -Dm644 %app_id.desktop %{buildroot}%{_datadir}/applications/%app_id.desktop
 #install -Dm644 crates/zed/resources/app-icon.png %{buildroot}%{_datadir}/pixmaps/%app_id.png
-install -Dm644 %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/%app_id.svg
+install -Dm644 assets/images/zed_logo.svg %{buildroot}%{_datadir}/pixmaps/%app_id.svg
 install -Dm644 %app_id.metainfo.xml %{buildroot}%{_metainfodir}/%app_id.metainfo.xml
 
 
