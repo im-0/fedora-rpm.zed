@@ -1,3 +1,5 @@
+%global toolchain clang
+
 %global source_date_epoch_from_changelog 0
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -6,8 +8,8 @@
 
 
 Name:           zed
-Version:        1.0.0
-Release:        1.im1%{?dist}
+Version:        1.0.1
+Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
 License:        GPL3 AGPL
@@ -107,8 +109,6 @@ export LK_CUSTOM_WEBRTC="$( pwd )/../linux-arm64-release"
 %endif
 
 export RUSTFLAGS="-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=16 -Clink-arg=-fuse-ld=mold -Cstrip=none -Cforce-frame-pointers=yes -Clink-arg=-specs=/usr/lib/rpm/redhat/redhat-package-notes --cap-lints=warn"
-export CC=clang
-export CXX=clang++
 
 # Build CLI
 cargo build %{__cargo_common_opts} --release --frozen --package cli
