@@ -1,4 +1,4 @@
-From 08da2aaf4284f0c7dd6b41962b9023b6b753179d Mon Sep 17 00:00:00 2001
+From 34086ed0b195742315425c41ccdadfb5cc417e59 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Wed, 8 Apr 2026 03:36:41 +0200
 Subject: [PATCH 2/2] Fix Zed on Raspberry Pi 5
@@ -9,10 +9,10 @@ Subject: [PATCH 2/2] Fix Zed on Raspberry Pi 5
  2 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/Cargo.lock b/Cargo.lock
-index 9e22a77e65cd..d7d402398359 100644
+index 40e3e12130a0..72e88655a0be 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -10943,7 +10943,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
+@@ -10974,7 +10974,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
  [[package]]
  name = "naga"
  version = "29.0.0"
@@ -21,7 +21,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "arrayvec",
   "bit-set 0.9.1",
-@@ -20479,7 +20479,7 @@ checksum = "a751b3277700db47d3e574514de2eced5e54dc8a5436a3bf7a0b248b2cee16f3"
+@@ -20504,7 +20504,7 @@ checksum = "a751b3277700db47d3e574514de2eced5e54dc8a5436a3bf7a0b248b2cee16f3"
  [[package]]
  name = "wgpu"
  version = "29.0.0"
@@ -30,7 +30,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "arrayvec",
   "bitflags 2.10.0",
-@@ -20508,7 +20508,7 @@ dependencies = [
+@@ -20533,7 +20533,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core"
  version = "29.0.0"
@@ -39,7 +39,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "arrayvec",
   "bit-set 0.9.1",
-@@ -20540,7 +20540,7 @@ dependencies = [
+@@ -20565,7 +20565,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-apple"
  version = "29.0.0"
@@ -48,7 +48,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20548,7 +20548,7 @@ dependencies = [
+@@ -20573,7 +20573,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-emscripten"
  version = "29.0.0"
@@ -57,7 +57,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20556,7 +20556,7 @@ dependencies = [
+@@ -20581,7 +20581,7 @@ dependencies = [
  [[package]]
  name = "wgpu-core-deps-windows-linux-android"
  version = "29.0.0"
@@ -66,7 +66,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "wgpu-hal",
  ]
-@@ -20564,7 +20564,7 @@ dependencies = [
+@@ -20589,7 +20589,7 @@ dependencies = [
  [[package]]
  name = "wgpu-hal"
  version = "29.0.0"
@@ -75,7 +75,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "android_system_properties",
   "arrayvec",
-@@ -20616,7 +20616,7 @@ dependencies = [
+@@ -20641,7 +20641,7 @@ dependencies = [
  [[package]]
  name = "wgpu-naga-bridge"
  version = "29.0.0"
@@ -84,7 +84,7 @@ index 9e22a77e65cd..d7d402398359 100644
  dependencies = [
   "naga",
   "wgpu-types",
-@@ -20625,7 +20625,7 @@ dependencies = [
+@@ -20650,7 +20650,7 @@ dependencies = [
  [[package]]
  name = "wgpu-types"
  version = "29.0.0"
@@ -94,7 +94,7 @@ index 9e22a77e65cd..d7d402398359 100644
   "bitflags 2.10.0",
   "bytemuck",
 diff --git a/Cargo.toml b/Cargo.toml
-index d2d8f6df2ce8..1de349d270a4 100644
+index 47b8eddf1486..4f80bca3aeb2 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -805,7 +805,7 @@ which = "6.0.0"
