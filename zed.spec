@@ -8,7 +8,7 @@
 
 
 Name:           zed
-Version:        1.2.5
+Version:        1.2.6
 Release:        1.im0%{?dist}
 Summary:        a high-performance multiplayer code editor
 
