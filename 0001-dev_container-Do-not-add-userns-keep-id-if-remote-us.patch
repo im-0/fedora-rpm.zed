@@ -1,0 +1,127 @@
+From ab4edfa45d298a2fa14122ddfe4eb837716cbbb5 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Sat, 16 May 2026 03:16:18 +0200
+Subject: [PATCH] dev_container: Do not add `--userns=keep-id` if remote user
+ is root
+
+When `podman` is used and `remoteUser` is `root` (which usually is the case)
+and user that runs `podman` is not `root` (which usually is the case)
+following happens:
+
+* `podman` creates new user inside the container with the same name and
+  the same UID as user ouside of the container.
+* Nothing inside the container actually uses this newly created user as
+  `remoteUser` is set to `root`.
+* `root` inside the container is idmapped
+  to some random sub-UID outside of the container.
+* All files created inside the container are owned by that bogus sub-UID
+  outside.
+* This breaks many tools (like git, for example) outside of the devcontainer.
+
+Note that `--userns=keep-id` also overrides the effect of `USER` directive from
+Dockerfile that was used to build the devcontainer image. Not sure that
+this affects anything though...
+
+This patch mirrors https://github.com/devcontainers/cli/pull/1018 from
+the reference implementation.
+
+Also see https://github.com/devcontainers/cli/issues/1004
+---
+ .../src/devcontainer_manifest.rs              | 28 ++++++++++++++-----
+ 1 file changed, 21 insertions(+), 7 deletions(-)
+
+diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
+index fe1dbe7b9a8e..c8eacd83bf7a 100644
+--- a/crates/dev_container/src/devcontainer_manifest.rs
++++ b/crates/dev_container/src/devcontainer_manifest.rs
+@@ -362,7 +362,9 @@ impl DevContainerManifest {
+         }
+     }
+ 
+-    async fn download_feature_and_dockerfile_resources(&mut self) -> Result<(), DevContainerError> {
++    async fn download_feature_and_dockerfile_resources(
++        &mut self,
++    ) -> Result<String, DevContainerError> {
+         let dev_container = match &self.config {
+             ConfigStatus::Deserialized(_) => {
+                 log::error!(
+@@ -617,7 +619,7 @@ impl DevContainerManifest {
+         self.root_image = Some(root_image);
+         self.features_build_info = Some(build_info);
+ 
+-        Ok(())
++        Ok(remote_user)
+     }
+ 
+     fn generate_dockerfile_extended(
+@@ -806,6 +808,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+     async fn run_dev_container(
+         &self,
+         build_resources: DevContainerBuildResources,
++        remote_user: &str,
+     ) -> Result<DevContainerUp, DevContainerError> {
+         let ConfigStatus::VariableParsed(_) = &self.config else {
+             log::error!(
+@@ -818,7 +821,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+                 self.run_docker_compose(resources).await?
+             }
+             DevContainerBuildResources::Docker(resources) => {
+-                self.run_docker_image(resources).await?
++                self.run_docker_image(resources, remote_user).await?
+             }
+         };
+ 
+@@ -1746,8 +1749,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+     async fn run_docker_image(
+         &self,
+         build_resources: DockerBuildResources,
++        remote_user: &str,
+     ) -> Result<DockerInspect, DevContainerError> {
+-        let mut docker_run_command = self.create_docker_run_command(build_resources)?;
++        let mut docker_run_command =
++            self.create_docker_run_command(build_resources, remote_user)?;
+ 
+         let output = self
+             .command_runner
+@@ -1836,6 +1841,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+     fn create_docker_run_command(
+         &self,
+         build_resources: DockerBuildResources,
++        remote_user: &str,
+     ) -> Result<Command, DevContainerError> {
+         let remote_workspace_mount = self.remote_workspace_mount()?;
+ 
+@@ -1874,7 +1880,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+                 "--security-opt=label=disable",
+                 &mut command,
+             );
+-            run_if_missing("--userns", "--userns=keep-id", &mut command);
++            if remote_user != "root"
++                && remote_user != "0"
++                && !remote_user.starts_with("root:")
++                && !remote_user.starts_with("0:")
++            {
++                run_if_missing("--userns", "--userns=keep-id", &mut command);
++            }
+         }
+ 
+         run_if_missing("--sig-proxy", "--sig-proxy=false", &mut command);
+@@ -1941,11 +1953,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+ 
+         self.run_initialize_commands().await?;
+ 
+-        self.download_feature_and_dockerfile_resources().await?;
++        let remote_user = self.download_feature_and_dockerfile_resources().await?;
+ 
+         let build_resources = self.build_resources().await?;
+ 
+-        let devcontainer_up = self.run_dev_container(build_resources).await?;
++        let devcontainer_up = self
++            .run_dev_container(build_resources, &remote_user)
++            .await?;
+ 
+         self.run_remote_scripts(&devcontainer_up, true).await?;
+ 
+-- 
+2.54.0
+
