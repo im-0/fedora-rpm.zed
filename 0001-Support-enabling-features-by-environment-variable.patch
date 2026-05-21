@@ -1,7 +1,7 @@
-From 5afcb8b288cdc4f19fa50a46756537f671d07996 Mon Sep 17 00:00:00 2001
+From 4850a0fb0207cac0b027ac6165b01268815a153b Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
-Subject: [PATCH 1/2] Support enabling features by environment variable
+Subject: [PATCH] Support enabling features by environment variable
 
 This adds new environment variable `ZED_ENABLE_EXPERIMENTAL_FEATURES`
 that accepts comma-separated list of features:
@@ -32,10 +32,10 @@ index a8376de7e3a8..ebb79bd69464 100644
              self.server_flags.insert(flag.clone(), flag);
          }
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index ac1457075948..a7f81ed56e73 100644
+index 7adbbc9bb820..b5f70399332e 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -17,6 +17,7 @@ use crashes::InitCrashHandler;
+@@ -27,6 +27,7 @@ use crashes::InitCrashHandler;
  use db::kvp::{GlobalKeyValueStore, KeyValueStore};
  use editor::Editor;
  use extension::ExtensionHostProxy;
@@ -43,7 +43,7 @@ index ac1457075948..a7f81ed56e73 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -47,7 +48,7 @@ use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
+@@ -57,7 +58,7 @@ use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use smol::future::poll_once;
  use std::{
      cell::RefCell,
@@ -52,7 +52,7 @@ index ac1457075948..a7f81ed56e73 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -860,6 +861,26 @@ fn main() {
+@@ -870,6 +871,26 @@ fn main() {
  
          initialize_workspace(app_state.clone(), cx);
  

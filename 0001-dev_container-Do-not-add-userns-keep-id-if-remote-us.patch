@@ -1,4 +1,4 @@
-From ab4edfa45d298a2fa14122ddfe4eb837716cbbb5 Mon Sep 17 00:00:00 2001
+From 205a97a3c150c341e47689c616efb5901ffe5a9e Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sat, 16 May 2026 03:16:18 +0200
 Subject: [PATCH] dev_container: Do not add `--userns=keep-id` if remote user

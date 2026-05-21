@@ -16,11 +16,6 @@ git = "https://github.com/camdencheek/tree-sitter-go-mod"
 rev = "2e886870578eeba1927a2dc4bd2e2b3f598c5f9a"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/im-0/wgpu.git?branch=zed-v29-rpi5"]
-git = "https://github.com/im-0/wgpu.git"
-branch = "zed-v29-rpi5"
-replace-with = "vendored-sources"
-
 [source."git+https://github.com/microsoft/python-environment-tools.git?rev=9e61a22af989fe54937bf07c9f9cff1bc53d9056"]
 git = "https://github.com/microsoft/python-environment-tools.git"
 rev = "9e61a22af989fe54937bf07c9f9cff1bc53d9056"
@@ -90,9 +85,9 @@ git = "https://github.com/zed-industries/lsp-types"
 rev = "f4dfa89a21ca35cd929b70354b1583fabae325f8"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/mermaid-rs-renderer?rev=374db9ead5426697c6c2111151d9f246899bc638"]
+[source."git+https://github.com/zed-industries/mermaid-rs-renderer?rev=782b89a7da3f0e91e51f98d00a93acba679be6fb"]
 git = "https://github.com/zed-industries/mermaid-rs-renderer"
-rev = "374db9ead5426697c6c2111151d9f246899bc638"
+rev = "782b89a7da3f0e91e51f98d00a93acba679be6fb"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/notify.git?rev=ce58c24cad542c28e04ced02e20325a4ec28a31d"]
@@ -138,6 +133,11 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/zed-industries/tree-sitter-yaml?rev=baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"]
 git = "https://github.com/zed-industries/tree-sitter-yaml"
 rev = "baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/zed-industries/wgpu.git?rev=357a0c56e0070480ad9daea5d2eaa83150b79e88"]
+git = "https://github.com/zed-industries/wgpu.git"
+rev = "357a0c56e0070480ad9daea5d2eaa83150b79e88"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/windows-capture.git?rev=f0d6c1b6691db75461b732f6d5ff56eed002eeb9"]
