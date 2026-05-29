@@ -1,4 +1,4 @@
-From 4850a0fb0207cac0b027ac6165b01268815a153b Mon Sep 17 00:00:00 2001
+From 7a655aba126e41b7fd0677455455b191d5304c50 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -32,7 +32,7 @@ index a8376de7e3a8..ebb79bd69464 100644
              self.server_flags.insert(flag.clone(), flag);
          }
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 7adbbc9bb820..b5f70399332e 100644
+index 3042510f2c61..c493f191a437 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -27,6 +27,7 @@ use crashes::InitCrashHandler;
@@ -52,7 +52,7 @@ index 7adbbc9bb820..b5f70399332e 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -870,6 +871,26 @@ fn main() {
+@@ -871,6 +872,26 @@ fn main() {
  
          initialize_workspace(app_state.clone(), cx);
  
