@@ -1,4 +1,4 @@
-From 205a97a3c150c341e47689c616efb5901ffe5a9e Mon Sep 17 00:00:00 2001
+From 5de9efdf48f9b66e367115c6af168d9a087ec3e6 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sat, 16 May 2026 03:16:18 +0200
 Subject: [PATCH] dev_container: Do not add `--userns=keep-id` if remote user
@@ -31,11 +31,11 @@ Also see https://github.com/devcontainers/cli/issues/1004
  1 file changed, 21 insertions(+), 7 deletions(-)
 
 diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
-index fe1dbe7b9a8e..c8eacd83bf7a 100644
+index c88c4df995a7..f97d9a12ea8e 100644
 --- a/crates/dev_container/src/devcontainer_manifest.rs
 +++ b/crates/dev_container/src/devcontainer_manifest.rs
-@@ -362,7 +362,9 @@ impl DevContainerManifest {
-         }
+@@ -415,7 +415,9 @@ impl DevContainerManifest {
+         Ok(())
      }
  
 -    async fn download_feature_and_dockerfile_resources(&mut self) -> Result<(), DevContainerError> {
@@ -45,7 +45,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
          let dev_container = match &self.config {
              ConfigStatus::Deserialized(_) => {
                  log::error!(
-@@ -617,7 +619,7 @@ impl DevContainerManifest {
+@@ -677,7 +679,7 @@ impl DevContainerManifest {
          self.root_image = Some(root_image);
          self.features_build_info = Some(build_info);
  
@@ -54,7 +54,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
      }
  
      fn generate_dockerfile_extended(
-@@ -806,6 +808,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+@@ -866,6 +868,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
      async fn run_dev_container(
          &self,
          build_resources: DevContainerBuildResources,
@@ -62,7 +62,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
      ) -> Result<DevContainerUp, DevContainerError> {
          let ConfigStatus::VariableParsed(_) = &self.config else {
              log::error!(
-@@ -818,7 +821,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+@@ -878,7 +881,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
                  self.run_docker_compose(resources).await?
              }
              DevContainerBuildResources::Docker(resources) => {
@@ -71,7 +71,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
              }
          };
  
-@@ -1746,8 +1749,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -1806,8 +1809,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      async fn run_docker_image(
          &self,
          build_resources: DockerBuildResources,
@@ -83,7 +83,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
  
          let output = self
              .command_runner
-@@ -1836,6 +1841,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -1896,6 +1901,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      fn create_docker_run_command(
          &self,
          build_resources: DockerBuildResources,
@@ -91,7 +91,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
      ) -> Result<Command, DevContainerError> {
          let remote_workspace_mount = self.remote_workspace_mount()?;
  
-@@ -1874,7 +1880,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -1934,7 +1940,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
                  "--security-opt=label=disable",
                  &mut command,
              );
@@ -106,7 +106,7 @@ index fe1dbe7b9a8e..c8eacd83bf7a 100644
          }
  
          run_if_missing("--sig-proxy", "--sig-proxy=false", &mut command);
-@@ -1941,11 +1953,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2001,11 +2013,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
  
          self.run_initialize_commands().await?;
  

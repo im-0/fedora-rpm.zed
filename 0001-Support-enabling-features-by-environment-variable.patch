@@ -1,4 +1,4 @@
-From 7a655aba126e41b7fd0677455455b191d5304c50 Mon Sep 17 00:00:00 2001
+From e9d9708363278e3be504dc187b94ffb900ca5527 Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
