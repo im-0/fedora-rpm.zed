@@ -1,4 +1,4 @@
-From e9d9708363278e3be504dc187b94ffb900ca5527 Mon Sep 17 00:00:00 2001
+From 516cb5f795510b02ddf2abf87daf06cf612e427c Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -20,10 +20,10 @@ This patch also removes the ability to disable features at runtime.
  2 files changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/crates/feature_flags/src/store.rs b/crates/feature_flags/src/store.rs
-index a8376de7e3a8..ebb79bd69464 100644
+index 552d025f01e2..50635cc344f7 100644
 --- a/crates/feature_flags/src/store.rs
 +++ b/crates/feature_flags/src/store.rs
-@@ -107,7 +107,6 @@ impl FeatureFlagStore {
+@@ -117,7 +117,6 @@ impl FeatureFlagStore {
      pub fn update_server_flags(&mut self, staff: bool, flags: Vec<String>) {
          self.staff = staff;
          self.server_flags_received = true;
@@ -32,7 +32,7 @@ index a8376de7e3a8..ebb79bd69464 100644
              self.server_flags.insert(flag.clone(), flag);
          }
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 3042510f2c61..c493f191a437 100644
+index 01d2c7b08fec..34f35a4797c5 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
 @@ -27,6 +27,7 @@ use crashes::InitCrashHandler;
@@ -52,7 +52,7 @@ index 3042510f2c61..c493f191a437 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -871,6 +872,26 @@ fn main() {
+@@ -867,6 +868,26 @@ fn main() {
  
          initialize_workspace(app_state.clone(), cx);
  

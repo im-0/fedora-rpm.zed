@@ -85,9 +85,9 @@ git = "https://github.com/zed-industries/merman"
 tag = "v0.6.2-with-patches"
 replace-with = "vendored-sources"
 
-[source."git+https://github.com/zed-industries/notify.git?rev=6566ae63331ffd1f2025b18dc00c3049fb8588c9"]
-git = "https://github.com/zed-industries/notify.git"
-rev = "6566ae63331ffd1f2025b18dc00c3049fb8588c9"
+[source."git+https://github.com/zed-industries/notify?rev=faecbc33db4f59313e5225ef766bfd9e54a54cfd"]
+git = "https://github.com/zed-industries/notify"
+rev = "faecbc33db4f59313e5225ef766bfd9e54a54cfd"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/zed-industries/reqwest.git?rev=c15662463bda39148ba154100dd44d3fba5873a4"]
