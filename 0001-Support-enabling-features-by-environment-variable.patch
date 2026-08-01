@@ -1,4 +1,4 @@
-From 516cb5f795510b02ddf2abf87daf06cf612e427c Mon Sep 17 00:00:00 2001
+From 5f7675b0226c7bc0951249b2587b9d96208a1b3d Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Tue, 4 Mar 2025 07:28:41 +0100
 Subject: [PATCH] Support enabling features by environment variable
@@ -32,10 +32,10 @@ index 552d025f01e2..50635cc344f7 100644
              self.server_flags.insert(flag.clone(), flag);
          }
 diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
-index 01d2c7b08fec..34f35a4797c5 100644
+index 0c161e2e562f..f5b5f692d664 100644
 --- a/crates/zed/src/main.rs
 +++ b/crates/zed/src/main.rs
-@@ -27,6 +27,7 @@ use crashes::InitCrashHandler;
+@@ -25,6 +25,7 @@ use crashes::InitCrashHandler;
  use db::kvp::{GlobalKeyValueStore, KeyValueStore};
  use editor::Editor;
  use extension::ExtensionHostProxy;
@@ -43,7 +43,7 @@ index 01d2c7b08fec..34f35a4797c5 100644
  use fs::{Fs, RealFs};
  use futures::{StreamExt, channel::oneshot, future};
  use git::GitHostingProviderRegistry;
-@@ -57,7 +58,7 @@ use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
+@@ -53,7 +54,7 @@ use settings::{BaseKeymap, Settings, SettingsStore, watch_config_file};
  use smol::future::poll_once;
  use std::{
      cell::RefCell,
@@ -52,7 +52,7 @@ index 01d2c7b08fec..34f35a4797c5 100644
      io::{self, IsTerminal},
      path::{Path, PathBuf},
      process,
-@@ -867,6 +868,26 @@ fn main() {
+@@ -869,6 +870,26 @@ fn main() {
  
          initialize_workspace(app_state.clone(), cx);
  
@@ -80,5 +80,5 @@ index 01d2c7b08fec..34f35a4797c5 100644
  
          cx.spawn({
 -- 
-2.54.0
+2.55.0
 

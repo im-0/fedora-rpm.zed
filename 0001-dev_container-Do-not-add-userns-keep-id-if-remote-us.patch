@@ -1,4 +1,4 @@
-From c249a8406357baf55dfb8f0f2945b525f4d2b8ac Mon Sep 17 00:00:00 2001
+From 75ec87b6d904b77644f93f47405c3971591669ca Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sat, 16 May 2026 03:16:18 +0200
 Subject: [PATCH] dev_container: Do not add `--userns=keep-id` if remote user
@@ -31,10 +31,10 @@ Also see https://github.com/devcontainers/cli/issues/1004
  1 file changed, 21 insertions(+), 7 deletions(-)
 
 diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
-index 0c38538657da..186ac2eba89b 100644
+index 357ecbf1860c..822cb51c5d47 100644
 --- a/crates/dev_container/src/devcontainer_manifest.rs
 +++ b/crates/dev_container/src/devcontainer_manifest.rs
-@@ -415,7 +415,9 @@ impl DevContainerManifest {
+@@ -428,7 +428,9 @@ impl DevContainerManifest {
          Ok(())
      }
  
@@ -45,7 +45,7 @@ index 0c38538657da..186ac2eba89b 100644
          let dev_container = match &self.config {
              ConfigStatus::Deserialized(_) => {
                  log::error!(
-@@ -677,7 +679,7 @@ impl DevContainerManifest {
+@@ -695,7 +697,7 @@ impl DevContainerManifest {
          self.root_image = Some(root_image);
          self.features_build_info = Some(build_info);
  
@@ -54,7 +54,7 @@ index 0c38538657da..186ac2eba89b 100644
      }
  
      fn generate_dockerfile_extended(
-@@ -872,6 +874,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+@@ -997,6 +999,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
      async fn run_dev_container(
          &self,
          build_resources: DevContainerBuildResources,
@@ -62,7 +62,7 @@ index 0c38538657da..186ac2eba89b 100644
      ) -> Result<DevContainerUp, DevContainerError> {
          let ConfigStatus::VariableParsed(_) = &self.config else {
              log::error!(
-@@ -884,7 +887,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
+@@ -1009,7 +1012,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${{PATH:-\3}}/g' /etc/profile || true
                  self.run_docker_compose(resources).await?
              }
              DevContainerBuildResources::Docker(resources) => {
@@ -71,7 +71,7 @@ index 0c38538657da..186ac2eba89b 100644
              }
          };
  
-@@ -1827,8 +1830,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2058,8 +2061,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      async fn run_docker_image(
          &self,
          build_resources: DockerBuildResources,
@@ -83,7 +83,7 @@ index 0c38538657da..186ac2eba89b 100644
  
          let output = self
              .command_runner
-@@ -1917,6 +1922,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2148,6 +2153,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      fn create_docker_run_command(
          &self,
          build_resources: DockerBuildResources,
@@ -91,7 +91,7 @@ index 0c38538657da..186ac2eba89b 100644
      ) -> Result<Command, DevContainerError> {
          let remote_workspace_mount = self.remote_workspace_mount()?;
  
-@@ -1955,7 +1961,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2189,7 +2195,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
                  "--security-opt=label=disable",
                  &mut command,
              );
@@ -106,7 +106,7 @@ index 0c38538657da..186ac2eba89b 100644
          }
  
          run_if_missing("--sig-proxy", "--sig-proxy=false", &mut command);
-@@ -2025,11 +2037,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2296,11 +2308,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
  
          self.run_initialize_commands().await?;
  
@@ -120,8 +120,8 @@ index 0c38538657da..186ac2eba89b 100644
 +            .run_dev_container(build_resources, &remote_user)
 +            .await?;
  
-         self.run_remote_scripts(&devcontainer_up, true).await?;
- 
+         self.run_remote_scripts(&devcontainer_up, true, true)
+             .await?;
 -- 
-2.54.0
+2.55.0
 
