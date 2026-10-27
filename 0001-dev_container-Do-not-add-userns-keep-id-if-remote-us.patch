@@ -1,4 +1,4 @@
-From 75ec87b6d904b77644f93f47405c3971591669ca Mon Sep 17 00:00:00 2001
+From 67b3acea2cea748116f55de9c8e623b47f9e9cac Mon Sep 17 00:00:00 2001
 From: Ivan Mironov <mironov.ivan@gmail.com>
 Date: Sat, 16 May 2026 03:16:18 +0200
 Subject: [PATCH] dev_container: Do not add `--userns=keep-id` if remote user
@@ -31,7 +31,7 @@ Also see https://github.com/devcontainers/cli/issues/1004
  1 file changed, 21 insertions(+), 7 deletions(-)
 
 diff --git a/crates/dev_container/src/devcontainer_manifest.rs b/crates/dev_container/src/devcontainer_manifest.rs
-index 357ecbf1860c..822cb51c5d47 100644
+index a71eda5ca5a8..8a0e2515e80a 100644
 --- a/crates/dev_container/src/devcontainer_manifest.rs
 +++ b/crates/dev_container/src/devcontainer_manifest.rs
 @@ -428,7 +428,9 @@ impl DevContainerManifest {
@@ -71,7 +71,7 @@ index 357ecbf1860c..822cb51c5d47 100644
              }
          };
  
-@@ -2058,8 +2061,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2069,8 +2072,10 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      async fn run_docker_image(
          &self,
          build_resources: DockerBuildResources,
@@ -83,7 +83,7 @@ index 357ecbf1860c..822cb51c5d47 100644
  
          let output = self
              .command_runner
-@@ -2148,6 +2153,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2159,6 +2164,7 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
      fn create_docker_run_command(
          &self,
          build_resources: DockerBuildResources,
@@ -91,7 +91,7 @@ index 357ecbf1860c..822cb51c5d47 100644
      ) -> Result<Command, DevContainerError> {
          let remote_workspace_mount = self.remote_workspace_mount()?;
  
-@@ -2189,7 +2195,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2200,7 +2206,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
                  "--security-opt=label=disable",
                  &mut command,
              );
@@ -106,7 +106,7 @@ index 357ecbf1860c..822cb51c5d47 100644
          }
  
          run_if_missing("--sig-proxy", "--sig-proxy=false", &mut command);
-@@ -2296,11 +2308,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
+@@ -2307,11 +2319,13 @@ RUN sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1\${PATH:-\3}/g' /etc/profile || true
  
          self.run_initialize_commands().await?;
  
@@ -123,5 +123,5 @@ index 357ecbf1860c..822cb51c5d47 100644
          self.run_remote_scripts(&devcontainer_up, true, true)
              .await?;
 -- 
-2.55.0
+2.56.0
 
